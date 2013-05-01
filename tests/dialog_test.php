@@ -31,7 +31,7 @@
  * @package ConsoleTools
  * @subpackage Tests
  */
-class ezcConsoleDialogTest extends ezcTestCase
+abstract class ezcConsoleDialogTest extends ezcTestCase
 {
     const PIPE_READ_SLEEP = 5000;
 

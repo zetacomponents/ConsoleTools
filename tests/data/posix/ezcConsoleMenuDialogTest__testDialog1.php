@@ -25,12 +25,7 @@
  */
 
 
-require_once "Base/src/base.php";
-
-function __autoload( $className )
-{
-    ezcBase::autoload( $className );
-}
+require_once dirname(__FILE__) . "/../../../vendor/autoload.php";
 
 $out = new ezcConsoleOutput();
 

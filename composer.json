@@ -1,4 +1,8 @@
 {
+    "name": "zetacomponents/console-tools",
+    "type": "library",
+    "description": "A set of classes to do different actions with the console (also called shell). It can render a progress bar, tables and a status bar and contains a class for parsing command line options.",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Sergey Alexeev"
@@ -31,20 +35,22 @@
             "name": "Alexandru Stanoi"
         }
     ],
+    "homepage": "https://github.com/zetacomponents",
+    "require": {
+        "zetacomponents/base": "*"
+    },
+    "require-dev": {
+        "zetacomponents/unit-test": "*", 
+        "phpunit/phpunit" : "~3.7"
+    }, 
     "autoload": {
         "classmap": [
             "src"
         ]
     },
-    "description": "A set of classes to do different actions with the console (also called shell). It can render a progress bar, tables and a status bar and contains a class for parsing command line options.",
-    "homepage": "https://github.com/zetacomponents",
-    "license": "Apache-2.0",
-    "name": "zetacomponents/console-tools",
-    "type": "library",
-        "require": {
-            "zetacomponents/base": "*"
-        },
-        "require-dev": {
-            "zetacomponents/unit-test": "*"
-        }
+    "config" : {
+        "bin-dir" : "bin"
+    }, 
+    "minimum-stability" : "dev", 
+    "prefer-stable" : true
 }

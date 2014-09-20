@@ -1,3 +1,12 @@
+1.7 - Saturday 20 September 2014
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Fixed: Adjusted source headers of Execution to Apache license.
+- Updated: Moving copyright information to NOTICE files.
+- Fixed: Updated copyright dates in NOTICE files.
+- Remove custom test runner.
+- Fix autoloading with composer
+
 1.6.1 - [RELEASEDATE]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

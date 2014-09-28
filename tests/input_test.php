@@ -2870,12 +2870,44 @@ class ezcConsoleInputTest extends ezcTestCase
             'ezcConsoleOptionExclusionViolationException'
         );
     }
+
+    private function arrayRecursiveDiff($aArray1, $aArray2)
+    {
+        $aReturn = array();
+
+        foreach ($aArray1 as $mKey => $mValue)
+        {
+            if (array_key_exists($mKey, $aArray2))
+            {
+                if (is_array($mValue))
+                {
+                      $aRecursiveDiff = $this->arrayRecursiveDiff($mValue, $aArray2[$mKey]);
+                      if (count($aRecursiveDiff))
+                      {
+                          $aReturn[$mKey] = $aRecursiveDiff;
+                      }
+                }
+                else
+                {
+                    if ($mValue != $aArray2[$mKey])
+                    {
+                        $aReturn[$mKey] = $mValue;
+                    }
+                }
+            }
+            else
+            {
+                $aReturn[$mKey] = $mValue;
+            }
+        }
+        return $aReturn;
+    }
     
     private function commonProcessTestSuccess( $args, $res )
     {
         $this->input->process( $args );
         $values = $this->input->getOptionValues();
-        $this->assertTrue( count( array_diff( $res, $values ) ) == 0, 'Parameters processed incorrectly.' );
+        $this->assertTrue( count( $this->arrayRecursiveDiff( $res, $values ) ) == 0, 'Parameters processed incorrectly.' );
     }
     
     private function commonProcessTestFailure( $args, $exceptionClass, $message = null )

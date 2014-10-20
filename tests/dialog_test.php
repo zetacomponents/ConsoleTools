@@ -68,7 +68,7 @@ abstract class ezcConsoleDialogTest extends ezcTestCase
         }
         else
         {
-            $this->phpPath = '/bin/env php';
+            $this->phpPath = '/usr/bin/env php';
         }
     }
 

@@ -26,11 +26,6 @@
  */
 
 /**
- * Require generic test class for ezcConsoleDialog implementations.
- */
-require_once dirname( __FILE__ ) . "/dialog_test.php";
-
-/**
  * Test suite for ezcConsoleToolsMenuDialog class.
  * 
  * @package ConsoleTools

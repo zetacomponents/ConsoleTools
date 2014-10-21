@@ -31,7 +31,7 @@
  * @package ConsoleTools
  * @subpackage Tests
  */
-class ezcConsoleDialogTest extends ezcTestCase
+abstract class ezcConsoleDialogTest extends ezcTestCase
 {
     const PIPE_READ_SLEEP = 5000;
 
@@ -68,7 +68,7 @@ class ezcConsoleDialogTest extends ezcTestCase
         }
         else
         {
-            $this->phpPath = '/bin/env php';
+            $this->phpPath = '/usr/bin/env php';
         }
     }
 

@@ -164,6 +164,9 @@ class ezcConsoleMenuDialogTest extends ezcConsoleDialogTest
         $this->assertTrue( $exceptionCaught, "Excption not thrown on getResult() without result." );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog1()
     {
         $this->runDialog( __METHOD__ );
@@ -180,6 +183,9 @@ class ezcConsoleMenuDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( $this->res, $res );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog2()
     {
         $this->runDialog( __METHOD__ );
@@ -196,6 +202,9 @@ class ezcConsoleMenuDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( $this->res, $res );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog3()
     {
         $this->runDialog( __METHOD__ );
@@ -221,6 +230,9 @@ class ezcConsoleMenuDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( $this->res, $res );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog4()
     {
         $this->runDialog( __METHOD__ );

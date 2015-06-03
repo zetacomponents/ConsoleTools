@@ -164,6 +164,9 @@ class ezcConsoleQuestionDialogTest extends ezcConsoleDialogTest
         $this->assertTrue( $exceptionCaught, "Excption not thrown on getResult() without result." );
     }
 
+    /**
+     * @group interactive
+     */
     public function testYesNoQuestionFactory()
     {
         $output = new ezcConsoleOutput();
@@ -178,6 +181,9 @@ class ezcConsoleQuestionDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( ezcConsoleQuestionDialogCollectionValidator::CONVERT_LOWER, $dialog->options->validator->conversion );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog1()
     {
         $this->runDialog( __METHOD__ );
@@ -194,6 +200,9 @@ class ezcConsoleQuestionDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( $this->res, $res );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog2()
     {
         $this->runDialog( __METHOD__ );
@@ -216,6 +225,9 @@ class ezcConsoleQuestionDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( $this->res, $res );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog3()
     {
         $this->runDialog( __METHOD__ );
@@ -232,6 +244,9 @@ class ezcConsoleQuestionDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( $this->res, $res );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog4()
     {
         $this->runDialog( __METHOD__ );
@@ -254,6 +269,9 @@ class ezcConsoleQuestionDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( $this->res, $res );
     }
 
+    /**
+     * @group interactive
+     */
     public function testDialog5()
     {
         $this->runDialog( __METHOD__ );

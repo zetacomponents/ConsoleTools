@@ -36,7 +36,7 @@ class ezcConsoleArgumentTest extends ezcTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcConsoleArgumentTest" );
+		return new PHPUnit\Framework\TestSuite( "ezcConsoleArgumentTest" );
 	}
 
     protected function setUp()

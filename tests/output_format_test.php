@@ -36,7 +36,7 @@ class ezcConsoleOutputFormatTest extends ezcTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcConsoleOutputFormatTest" );
+		return new PHPUnit\Framework\TestSuite( "ezcConsoleOutputFormatTest" );
 	}
 
     public function testConstructor()

@@ -35,7 +35,7 @@ class ezcConsoleQuestionDialogRegexValidatorTest extends ezcTestCase
 {
 	public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( "ezcConsoleQuestionDialogRegexValidatorTest" );
+        return new PHPUnit\Framework\TestSuite( "ezcConsoleQuestionDialogRegexValidatorTest" );
     }
 
     public function testGetAccessDefaultSuccess()

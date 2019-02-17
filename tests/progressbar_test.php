@@ -35,7 +35,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcConsoleProgressbarTest" );
+		return new PHPUnit\Framework\TestSuite( "ezcConsoleProgressbarTest" );
 	}
     
     public function testProgress1()

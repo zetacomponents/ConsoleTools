@@ -36,7 +36,7 @@ class ezcConsoleProgressMonitorOptionsTest extends ezcTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcConsoleProgressMonitorOptionsTest" );
+		return new PHPUnit\Framework\TestSuite( "ezcConsoleProgressMonitorOptionsTest" );
 	}
     
     /**

@@ -36,7 +36,7 @@ class ezcConsoleTableCellTest extends ezcTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( "ezcConsoleTableCellTest" );
+		return new PHPUnit\Framework\TestSuite( "ezcConsoleTableCellTest" );
 	}
 
     public function testConstructorSuccessDefault()

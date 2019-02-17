@@ -35,7 +35,7 @@ class ezcConsoleDialogOptionsTest extends ezcTestCase
 {
 	public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( "ezcConsoleDialogOptionsTest" );
+        return new PHPUnit\Framework\TestSuite( "ezcConsoleDialogOptionsTest" );
     }
 
     public function testGetAccessDefaultSuccess()

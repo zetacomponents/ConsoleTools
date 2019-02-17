@@ -36,7 +36,7 @@ class ezcConsoleMenuDialogTest extends ezcConsoleDialogTest
 
 	public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( "ezcConsoleMenuDialogTest" );
+        return new PHPUnit\Framework\TestSuite( "ezcConsoleMenuDialogTest" );
     }
 
     public function testGetAccessSuccess()

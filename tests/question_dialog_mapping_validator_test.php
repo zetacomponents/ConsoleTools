@@ -35,7 +35,7 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 {
 	public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( "ezcConsoleQuestionDialogMappingValidatorTest" );
+        return new PHPUnit\Framework\TestSuite( "ezcConsoleQuestionDialogMappingValidatorTest" );
     }
 
     public function testGetAccessDefaultSuccess()

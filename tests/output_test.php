@@ -91,7 +91,7 @@ class ezcConsoleOutputTest extends ezcTestCase
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleOutputTest" );
 	}
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->consoleOutput = new ezcConsoleOutput();
         foreach ( $this->testFormats as $name => $inout ) 
@@ -103,7 +103,7 @@ class ezcConsoleOutputTest extends ezcTestCase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset( $this->consoleOutput );
     }

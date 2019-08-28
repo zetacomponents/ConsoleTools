@@ -47,7 +47,7 @@ abstract class ezcConsoleDialogTest extends ezcTestCase
 
     protected $res = array();
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->dataDir = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR
             . ( ezcBaseFeatures::os() === 'Windows' ? "windows" : "posix" );
@@ -72,7 +72,7 @@ abstract class ezcConsoleDialogTest extends ezcTestCase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset( $this->output );
     }

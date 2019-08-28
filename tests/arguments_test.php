@@ -39,7 +39,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleArgumentsTest" );
 	}
 
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 

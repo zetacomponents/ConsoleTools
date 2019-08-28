@@ -73,7 +73,7 @@ class ezcConsoleTableTest extends ezcTestCase
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleTableTest" );
 	}
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->output = new ezcConsoleOutput();
         $formats = array(

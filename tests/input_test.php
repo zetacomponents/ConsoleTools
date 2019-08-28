@@ -194,7 +194,7 @@ class ezcConsoleInputTest extends ezcTestCase
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleInputTest" );
 	}
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->input = new ezcConsoleInput();
         foreach ( $this->testOptions as $paramData )
@@ -229,7 +229,7 @@ class ezcConsoleInputTest extends ezcTestCase
         return $param;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset( $this->input );
     }

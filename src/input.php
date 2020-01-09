@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,18 +27,18 @@
 
 /**
  * The ezcConsoleInput class handles the given options and arguments on the console.
- * 
+ *
  * This class allows the complete handling of options and arguments submitted
  * to a console based application.
  *
- * The next example demonstrate how to capture the console options: 
- * 
+ * The next example demonstrate how to capture the console options:
+ *
  * <code>
  * $optionHandler = new ezcConsoleInput();
- * 
+ *
  * // Register simple parameter -h/--help
  * $optionHandler->registerOption( new ezcConsoleOption( 'h', 'help' ) );
- * 
+ *
  * // Register complex parameter -f/--file
  * $file = new ezcConsoleOption(
  *  'f',
@@ -50,10 +50,10 @@
  *  'Processes a single file.'
  * );
  * $optionHandler->registerOption( $file );
- * 
+ *
  * // Manipulate parameter -f/--file after registration
  * $file->multiple = true;
- * 
+ *
  * // Register another complex parameter that depends on -f and excludes -h
  * $dir = new ezcConsoleOption(
  *  'd',
@@ -67,10 +67,10 @@
  *  array( new ezcConsoleOptionRule( $optionHandler->getOption( 'h' ) ) )
  * );
  * $optionHandler->registerOption( $dir );
- * 
+ *
  * // Register an alias for this parameter
  * $optionHandler->registerAlias( 'e', 'extended-dir', $dir );
- * 
+ *
  * // Process registered parameters and handle errors
  * try
  * {
@@ -81,7 +81,7 @@
  *      echo $e->getMessage();
  *      exit( 1 );
  * }
- * 
+ *
  * // Process a single parameter
  * $file = $optionHandler->getOption( 'f' );
  * if ( $file->value === false )
@@ -96,7 +96,7 @@
  * {
  *      echo "Parameter -{$file->short}/--{$file->long} was submitted with value '".var_export($file->value, true)."'.\n";
  * }
- * 
+ *
  * // Process all parameters at once:
  * foreach ( $optionHandler->getOptionValues() as $paramShort => $val )
  * {
@@ -117,7 +117,7 @@
  *      }
  * }
  * </code>
- * 
+ *
  * @package ConsoleTools
  * @version //autogen//
  * @mainclass
@@ -137,7 +137,7 @@ class ezcConsoleInput
     const TYPE_INT      = 2;
 
     /**
-     * Option takes a string value. 
+     * Option takes a string value.
      */
     const TYPE_STRING   = 3;
 
@@ -151,53 +151,53 @@ class ezcConsoleInput
      * {@link ezcConsoleInput::$optionShort}
      * {@link ezcConsoleInput::$optionLong}
      * are used.
-     * 
+     *
      * @var array(array)
      */
     private $options = array();
 
     /**
-     * Short option names. 
+     * Short option names.
      *
      * Each references a key in {@link ezcConsoleInput::$options}.
-     * 
+     *
      * @var array(string=>int)
      */
     private $optionShort = array();
 
     /**
-     * Long option names. 
-     * 
+     * Long option names.
+     *
      * Each references a key in {@link ezcConsoleInput::$options}.
-     * 
+     *
      * @var array(string=>int)
      */
     private $optionLong = array();
 
     /**
-     * Arguments, if submitted, are stored here. 
-     * 
+     * Arguments, if submitted, are stored here.
+     *
      * @var array(string)
      */
     private $arguments = array();
 
     /**
      * Wether the process() method has already been called.
-     * 
+     *
      * @var bool
      */
     private $processed = false;
 
     /**
      * Indicates if an option was submitted, that has the isHelpOption flag set.
-     * 
+     *
      * @var bool
      */
     private $helpOptionSet = false;
 
     /**
-     * Tool object for multi-byte encoding safe string operations. 
-     * 
+     * Tool object for multi-byte encoding safe string operations.
+     *
      * @var ezcConsoleStringTool
      */
     private $stringTool;
@@ -210,15 +210,15 @@ class ezcConsoleInput
     private $validator;
 
     /**
-     * Help generator. 
-     * 
+     * Help generator.
+     *
      * @var ezcConsoleInputHelpGenerator
      */
     private $helpGenerator;
 
     /**
-     * Collection of properties. 
-     * 
+     * Collection of properties.
+     *
      * @var array(string=>mixed)
      */
     protected $properties = array();
@@ -253,14 +253,14 @@ class ezcConsoleInput
     {
         foreach ( $this->optionShort as $short => $ref )
         {
-            if ( $short === $option->short ) 
+            if ( $short === $option->short )
             {
                 throw new ezcConsoleOptionAlreadyRegisteredException( $short );
             }
         }
         foreach ( $this->optionLong as $long => $ref )
         {
-            if ( $long === $option->long ) 
+            if ( $long === $option->long )
             {
                 throw new ezcConsoleOptionAlreadyRegisteredException( $long );
             }
@@ -281,7 +281,7 @@ class ezcConsoleInput
      * be used as if they were a normal option.
      *
      * The alias is registered with the short option name $short and the
-     * long option name $long. The alias references to the existing 
+     * long option name $long. The alias references to the existing
      * option $option.
      *
      * @see ezcConsoleInput::unregisterAlias()
@@ -329,11 +329,11 @@ class ezcConsoleInput
      *
      * @param string $optionDef
      * @return void
-     * 
-     * @throws ezcConsoleOptionStringNotWellformedException 
+     *
+     * @throws ezcConsoleOptionStringNotWellformedException
      *         If provided string does not have the correct format.
      */
-    public function registerOptionString( $optionDef ) 
+    public function registerOptionString( $optionDef )
     {
         $regex = '\[([a-z0-9-]+)([:?*+])?([^|]*)\|([a-z0-9-]+)([:?*+])?\]';
         // Check string for wellformedness
@@ -380,8 +380,8 @@ class ezcConsoleInput
     /**
      * Removes an option.
      *
-     * This function removes an option. All dependencies to that 
-     * specific option are removed completely from every other registered 
+     * This function removes an option. All dependencies to that
+     * specific option are removed completely from every other registered
      * option.
      *
      * @see ezcConsoleInput::registerOption()
@@ -425,7 +425,7 @@ class ezcConsoleInput
             }
         }
     }
-    
+
     /**
      * Removes an alias to an option.
      *
@@ -433,7 +433,7 @@ class ezcConsoleInput
      * name $long.
      *
      * @see ezcConsoleInput::registerAlias()
-     * 
+     *
      * @throws ezcConsoleOptionNoAliasException
      *      If the requested short/long name belongs to a real parameter instead.
      *
@@ -471,11 +471,11 @@ class ezcConsoleInput
      *
      * This method receives the long or short name of an option and
      * returns the ezcConsoleOption object.
-     * 
+     *
      * @param string $name  Short or long name of the option (without - or --).
      * @return ezcConsoleOption
      *
-     * @throws ezcConsoleOptionNotExistsException 
+     * @throws ezcConsoleOptionNotExistsException
      *         If requesting a not registered parameter.
      */
     public function getOption( $name )
@@ -495,33 +495,33 @@ class ezcConsoleInput
     /**
      * Process the input parameters.
      *
-     * Actually process the input options and arguments according to the actual 
+     * Actually process the input options and arguments according to the actual
      * settings.
-     * 
-     * Per default this method uses $argc and $argv for processing. You can 
+     *
+     * Per default this method uses $argc and $argv for processing. You can
      * override this setting with your own input, if necessary, using the
      * parameters of this method. (Attention, first argument is always the pro
      * gram name itself!)
      *
      * All exceptions thrown by this method contain an additional attribute "option"
      * which specifies the parameter on which the error occurred.
-     * 
+     *
      * @param array(string) $args The arguments
      * @return void
      *
-     * @throws ezcConsoleOptionNotExistsException 
+     * @throws ezcConsoleOptionNotExistsException
      *         If an option that was submitted does not exist.
      * @throws ezcConsoleOptionDependencyViolationException
-     *         If a dependency rule was violated. 
-     * @throws ezcConsoleOptionExclusionViolationException 
+     *         If a dependency rule was violated.
+     * @throws ezcConsoleOptionExclusionViolationException
      *         If an exclusion rule was violated.
-     * @throws ezcConsoleOptionTypeViolationException 
+     * @throws ezcConsoleOptionTypeViolationException
      *         If the type of a submitted value violates the options type rule.
-     * @throws ezcConsoleOptionArgumentsViolationException 
+     * @throws ezcConsoleOptionArgumentsViolationException
      *         If arguments are passed although a parameter disallowed them.
      *
      * @see ezcConsoleOptionException
-     */ 
+     */
     public function process( array $args = null )
     {
         if ( $this->processed )
@@ -553,7 +553,7 @@ class ezcConsoleInput
     /**
      * Sets defaults for options that have not been submitted.
      *
-     * Checks all options if they have been submited. If not and a default 
+     * Checks all options if they have been submited. If not and a default
      * values is present, this is set as the options value.
      */
     private function setOptionDefaults()
@@ -575,14 +575,14 @@ class ezcConsoleInput
      * Reads the submitted options from $args array.
      *
      * Returns the next index to check for arguments.
-     * 
-     * @param array(string) $args 
+     *
+     * @param array(string) $args
      * @returns int
      *
      * @throws ezcConsoleOptionNotExistsException
      *         if a submitted option does not exist.
      * @throws ezcConsoleOptionTooManyValuesException
-     *         if an option that expects only a single value was submitted 
+     *         if an option that expects only a single value was submitted
      *         with multiple values.
      * @throws ezcConsoleOptionTypeViolationException
      *         if an option was submitted with a value of the wrong type.
@@ -659,7 +659,7 @@ class ezcConsoleInput
      * Returns true if an option with the given name exists, otherwise false.
      *
      * Checks if an option with the given name is registered.
-     * 
+     *
      * @param string $name Short or long name of the option.
      * @return bool True if option exists, otherwise false.
      */
@@ -681,7 +681,7 @@ class ezcConsoleInput
      *
      * Returns an array of all registered options in the following format:
      * <code>
-     * array( 
+     * array(
      *      0 => ezcConsoleOption,
      *      1 => ezcConsoleOption,
      *      2 => ezcConsoleOption,
@@ -699,11 +699,11 @@ class ezcConsoleInput
     /**
      * Returns the values of all submitted options.
      *
-     * Returns an array of all values submitted to the options. The array is 
+     * Returns an array of all values submitted to the options. The array is
      * indexed by the parameters short name (excluding the '-' prefix). The array
      * does not contain any parameter, which value is 'false' (meaning: the
      * parameter was not submitted).
-     * 
+     *
      * @param bool $longnames Wheather to use longnames for indexing.
      * @return array(string=>mixed)
      */
@@ -712,7 +712,7 @@ class ezcConsoleInput
         $res = array();
         foreach ( $this->options as $param )
         {
-            if ( $param->value !== false ) 
+            if ( $param->value !== false )
             {
                 $res[( $longnames === true ) ? $param->long : $param->short] = $param->value;
             }
@@ -778,14 +778,14 @@ class ezcConsoleInput
      * The key of the first array level is the name of the section, which is
      * assigned to an array of options to group under this section. The $params
      * parameter still influences if an option is displayed at all.
-     * 
+     *
      * @param bool $long
      * @param array(string) $params
      * @param array(string=>array(string)) $paramGrouping
      * @return array(array(string)) Table structure as explained.
-     * 
-     * @apichange In future versions, the default values of $params will change 
-     *            to null instead of an empty array. Giving an empty array for 
+     *
+     * @apichange In future versions, the default values of $params will change
+     *            to null instead of an empty array. Giving an empty array for
      *            these will then be taken literally.
      */
     public function getHelp( $long = false, array $params = array(), array $paramGrouping = null )
@@ -827,9 +827,9 @@ class ezcConsoleInput
      *
      * Creates the original help array generated by {@link getHelp()}. The
      * $long and $params options are the same as they are for this method.
-     * 
-     * @param bool $long 
-     * @param array $params 
+     *
+     * @param bool $long
+     * @param array $params
      * @return array
      */
     private function getOptionHelpWithoutGrouping( $long, $params )
@@ -842,10 +842,10 @@ class ezcConsoleInput
 
     /**
      * Generates options helo array with ordering and grouping.
-     * 
-     * @param mixed $long 
-     * @param mixed $params 
-     * @param mixed $paramGrouping 
+     *
+     * @param mixed $long
+     * @param mixed $params
+     * @param mixed $paramGrouping
      * @return array()
      */
     private function getOptionHelpWithGrouping( $long, $params, $paramGrouping )
@@ -875,11 +875,11 @@ class ezcConsoleInput
         return $help;
     }
 
-    
+
     /**
      * Get help information for your options as a table.
      *
-     * This method provides the information returned by 
+     * This method provides the information returned by
      * {@link ezcConsoleInput::getHelp()} in a table.
      *
      * The $paramGrouping option can be used to group options in the help
@@ -903,11 +903,11 @@ class ezcConsoleInput
      * The key of the first array level is the name of the section, which is
      * assigned to an array of options to group under this section. The $params
      * parameter still influences if an option as displayed at all.
-     * 
+     *
      * @param ezcConsoleTable $table     The table object to fill.
-     * @param bool $long                 Set this to true for getting the 
+     * @param bool $long                 Set this to true for getting the
      *                                   long help version.
-     * @param array(string) $params Set of option names to generate help 
+     * @param array(string) $params Set of option names to generate help
      *                                   for, default is all.
      * @param array(string=>array(string)) $paramGrouping
      * @return ezcConsoleTable           The filled table.
@@ -928,7 +928,7 @@ class ezcConsoleInput
      * Returns a standard help output for your program.
      *
      * This method generates a help text as it's commonly known from Unix
-     * command line programs. The output will contain the synopsis, your 
+     * command line programs. The output will contain the synopsis, your
      * provided program description and the selected parameter help
      * as also provided by {@link ezcConsoleInput::getHelp()}. The returned
      * string can directly be printed to the console.
@@ -954,12 +954,12 @@ class ezcConsoleInput
      * The key of the first array level is the name of the section, which is
      * assigned to an array of options to group under this section. The $params
      * parameter still influences if an option as displayed at all.
-     * 
+     *
      * @param string $programDesc        The description of your program.
      * @param int $width                 The width to adjust the output text to.
-     * @param bool $long                 Set this to true for getting the long 
+     * @param bool $long                 Set this to true for getting the long
      *                                   help version.
-     * @param array(string) $params Set of option names to generate help 
+     * @param array(string) $params Set of option names to generate help
      *                                   for, default is all.
      * @param array(string=>array(string)) $paramGrouping
      * @return string The generated help text.
@@ -1004,12 +1004,12 @@ class ezcConsoleInput
     /**
      * Returns the synopsis string for the program.
      *
-     * This gives you a synopsis definition for the options and arguments 
-     * defined with this instance of ezcConsoleInput. You can filter the 
+     * This gives you a synopsis definition for the options and arguments
+     * defined with this instance of ezcConsoleInput. You can filter the
      * options named in the synopsis by submitting their short names in an
      * array as the parameter of this method. If the parameter $optionNames
-     * is set, only those options are listed in the synopsis. 
-     * 
+     * is set, only those options are listed in the synopsis.
+     *
      * @param array(string) $optionNames
      * @return string
      */
@@ -1022,7 +1022,7 @@ class ezcConsoleInput
      * Returns if a help option was set.
      * This method returns if an option was submitted, which was defined to be
      * a help option, using the isHelpOption flag.
-     * 
+     *
      * @return bool If a help option was set.
      */
     public function helpOptionSet()
@@ -1033,9 +1033,9 @@ class ezcConsoleInput
     /**
      * Property read access.
      *
-     * @throws ezcBasePropertyNotFoundException 
+     * @throws ezcBasePropertyNotFoundException
      *         If the the desired property is not found.
-     * 
+     *
      * @param string $propertyName Name of the property.
      * @return mixed Value of the property or null.
      * @ignore
@@ -1051,9 +1051,9 @@ class ezcConsoleInput
 
     /**
      * Property set access.
-     * 
-     * @param string $propertyName 
-     * @param string $propertyValue 
+     *
+     * @param string $propertyName
+     * @param string $propertyValue
      * @ignore
      * @return void
      */
@@ -1072,10 +1072,10 @@ class ezcConsoleInput
         }
         $this->properties[$propertyName] = $propertyValue;
     }
-    
+
     /**
      * Property isset access.
-     * 
+     *
      * @param string $propertyName Name of the property.
      * @return bool True if the property is set, otherwise false.
      * @ignore
@@ -1091,18 +1091,18 @@ class ezcConsoleInput
      * This method returns a part of the program synopsis, specifically for a
      * certain parameter. The method recursively adds depending parameters up
      * to the 2nd depth level to the synopsis. The second parameter is used
-     * to store the short names of all options that have already been used in 
-     * the synopsis (to avoid adding an option twice). The 3rd parameter 
-     * determines the actual deps in the option dependency recursion to 
+     * to store the short names of all options that have already been used in
+     * the synopsis (to avoid adding an option twice). The 3rd parameter
+     * determines the actual deps in the option dependency recursion to
      * terminate that after 2 recursions.
-     * 
+     *
      * @param ezcConsoleOption $option        The option to include.
      * @param array(string) $usedOptions Array of used option short names.
      * @param int $depth                      Current recursion depth.
      * @return string The synopsis for this parameter.
      *
-     * @apichange This method is deprecates. Implement your own {@link 
-     *            ezcConsoleInputHelpGenerator} instead, as soon as the 
+     * @apichange This method is deprecates. Implement your own {@link
+     *            ezcConsoleInputHelpGenerator} instead, as soon as the
      *            interface is made public.
      */
     protected function createOptionSynopsis( ezcConsoleOption $option, &$usedOptions, $depth = 0 )
@@ -1111,10 +1111,10 @@ class ezcConsoleInput
 
         // Break after a nesting level of 2
         if ( $depth++ > 2 || ( in_array( $option->short, $usedOptions['short'] ) && in_array( $option->long, $usedOptions['long'] ) ) ) return $synopsis;
-        
+
         $usedOptions['short'][] = $option->short;
         $usedOptions['long'][]  = $option->long;
-        
+
         $synopsis .= $option->short !== "" ? "-{$option->short}" : "--{$option->long}";
 
         if ( isset( $option->default ) )
@@ -1138,17 +1138,17 @@ class ezcConsoleInput
         foreach ( $option->getDependencies() as $rule )
         {
             $deeperSynopsis = $this->createOptionSynopsis( $rule->option, $usedOptions, $depth );
-            $synopsis .= ( iconv_strlen( trim( $deeperSynopsis ), 'UTF-8' ) > 0 
+            $synopsis .= ( iconv_strlen( trim( $deeperSynopsis ), 'UTF-8' ) > 0
                 ? ' ' . $deeperSynopsis
                 : ''
             );
         }
-        
+
         if ( $option->arguments === false )
         {
             $allowsArgs = false;
         }
-        
+
         // Make the whole thing optional?
         if ( $option->mandatory === false )
         {
@@ -1161,14 +1161,14 @@ class ezcConsoleInput
     /**
      * Process an option.
      *
-     * This method does the processing of a single option. 
-     * 
+     * This method does the processing of a single option.
+     *
      * @param array(string) $args The arguments array.
      * @param int $i                   The current position in the arguments array.
      * @return void
      *
      * @throws ezcConsoleOptionTooManyValuesException
-     *         If an option that expects only a single value was submitted 
+     *         If an option that expects only a single value was submitted
      *         with multiple values.
      * @throws ezcConsoleOptionTypeViolationException
      *         If an option was submitted with a value of the wrong type.
@@ -1230,15 +1230,15 @@ class ezcConsoleInput
             $i++;
         }
         // Value found? If not, use default, if available
-        if ( !isset( $option->value ) || $option->value === false || ( is_array( $option->value ) && count( $option->value ) === 0) ) 
+        if ( !isset( $option->value ) || $option->value === false || ( is_array( $option->value ) && count( $option->value ) === 0) )
         {
             throw new ezcConsoleOptionMissingValueException( $option );
         }
     }
 
     /**
-     * Process arguments given to the program. 
-     * 
+     * Process arguments given to the program.
+     *
      * @param array(string) $args The arguments array.
      * @param int $i                   Current index in arguments array.
      * @return void
@@ -1321,7 +1321,7 @@ class ezcConsoleInput
 
     /**
      * Returns if arguments are allowed with the current option submition.
-     * 
+     *
      * @return bool If arguments allowed.
      */
     protected function argumentsAllowed()
@@ -1362,7 +1362,7 @@ class ezcConsoleInput
     /**
      * Checks if a value is of a given type. Converts the value to the
      * correct PHP type on success.
-     *  
+     *
      * @param int $type   The type to check for. One of self::TYPE_*.
      * @param string $val The value to check. Will possibly altered!
      * @return bool True on succesful check, otherwise false.
@@ -1388,12 +1388,12 @@ class ezcConsoleInput
     }
 
     /**
-     * Split parameter and value for long option names. 
-     * 
+     * Split parameter and value for long option names.
+     *
      * This method checks for long options, if the value is passed using =. If
      * this is the case parameter and value get split and replaced in the
      * arguments array.
-     * 
+     *
      * @param array(string) $args The arguments array
      * @param int $i                   Current arguments array position
      * @return void

@@ -1,6 +1,7 @@
-1.7.1 - [RELEASEDATE]
+1.7.1 - Friday 13 March 2020
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+- Fixes #11: Compatibility with PHP 7.4
 - Enable Travis.
 
 

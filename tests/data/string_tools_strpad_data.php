@@ -35,7 +35,7 @@ $testSets = array(
         // $input
         array(
             'input' => 'str_pad()',
-            'padLegth' => 20,
+            'padLength' => 20,
         ),
         // $expected
         'str_pad()           ',
@@ -45,7 +45,7 @@ $testSets = array(
         // $input
         array(
             'input' => 'str_pad()',
-            'padLegth' => 20,
+            'padLength' => 20,
             'padString' => '-+'
         ),
         // $expected
@@ -56,7 +56,7 @@ $testSets = array(
         // $input
         array(
             'input' => 'str_pad()',
-            'padLegth' => 20,
+            'padLength' => 20,
             'padString' => '-+',
             'padType' => STR_PAD_LEFT
         ),
@@ -68,7 +68,7 @@ $testSets = array(
         // $input
         array(
             'input' => 'str_pad()',
-            'padLegth' => 20,
+            'padLength' => 20,
             'padString' => '-+',
             'padType' => STR_PAD_RIGHT
         ),
@@ -80,7 +80,7 @@ $testSets = array(
         // $input
         array(
             'input' => 'str_pad()',
-            'padLegth' => 20,
+            'padLength' => 20,
             'padString' => '-+',
             'padType' => STR_PAD_BOTH
         ),

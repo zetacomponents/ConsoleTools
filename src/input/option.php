@@ -164,7 +164,7 @@ class ezcConsoleOption
      */
     public function __construct(
         $short = '',
-        $long,
+        $long = '',
         $type = ezcConsoleInput::TYPE_NONE,
         $default = null,
         $multiple = false,

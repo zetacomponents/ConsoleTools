@@ -340,7 +340,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $this->assertTrue( $this->errorCaught, "Warning not caught on invalid status 'foo'." );
     }
 
-    public function catchWarning( $errno, $errstr, $errfile, $errline, $errcontext )
+    public function catchWarning( $errno, $errstr, $errfile, $errline, $errcontext = null )
     {
         $this->assertEquals( "Unknown status 'foo'.", $errstr );
         $this->assertEquals( realpath( dirname( __FILE__ ) . "/../src/statusbar.php" ), $errfile );

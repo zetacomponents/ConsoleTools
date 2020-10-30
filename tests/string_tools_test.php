@@ -53,7 +53,7 @@ class ezcConsoleStringToolsTest extends ezcTestCase
                 $tools,
                 'wordwrap'
             ),
-            $input
+            array_values( $input )
         );
         $this->assertEquals(
             $expected,

@@ -505,7 +505,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
                 $this->properties['options'] = $val;
                 return;
             case 'width':
-                if ( $val < 1 )
+                if ( !is_int( $val ) || $val < 1 )
                 {
                     throw new ezcBaseValueException( $key, $val, 'int > 0' );
                 }

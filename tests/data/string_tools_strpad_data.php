@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -93,7 +93,7 @@ $inputStrings = array(
     "variation",                                    // normal string
     "", 	                                        // empty string
     NULL,                                           // NULL
-    true,                                           // boolean 
+    true,                                           // boolean
     15,                                             // numeric
     15.55,                                          // numeric
     "2990"                                          // numeric string
@@ -104,7 +104,7 @@ $padLengths = array(
     -1,             // negative value
     0,              // < sizeof(input_string)
     9,              // <= sizeof(input_string)
-    10,             // > sizeof(input_string) 
+    10,             // > sizeof(input_string)
     16,             // > sizeof(input_string)
 );
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * ezcConsoleOutputTest class.
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,13 +27,13 @@
 
 /**
  * Test suite for ezcConsoleStatusbar class.
- * 
+ *
  * @package ConsoleTools
  * @subpackage Tests
  */
 class ezcConsoleStatusbarTest extends ezcTestCase
 {
-    private $stati = array( 
+    private $stati = array(
         true,
         false,
         true,
@@ -87,7 +87,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         // To prepare test files use this:
         // file_put_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testStatusbar1.dat', $res );
     }
-    
+
     public function testStatusbar2()
     {
         $out = new ezcConsoleOutput();
@@ -272,7 +272,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
     {
         $out = new ezcConsoleOutput();
         $status = new ezcConsoleStatusbar( $out );
-        
+
         ob_start();
         foreach ( $this->stati as $statusVal )
         {
@@ -283,7 +283,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $counter = $this->readAttribute( $status, "counter" );
         $this->assertEquals( 14, $counter[true], "Success values not counted correctly." );
         $this->assertEquals( 11, $counter[false], "Failure values not counted correctly." );
-        
+
         $status->reset();
         $counter = $this->readAttribute( $status, "counter" );
         $this->assertEquals( 0, $counter[true], "Success values not reset correctly." );
@@ -296,14 +296,14 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $status = new ezcConsoleStatusbar( $out );
 
         $this->assertEquals( 0, $status->getSuccessCount() );
-        
+
         ob_start();
         foreach ( $this->stati as $statusVal )
         {
             $status->add($statusVal);
         }
         ob_end_clean();
-        
+
         $this->assertEquals( 14, $status->getSuccessCount() );
     }
 
@@ -313,14 +313,14 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $status = new ezcConsoleStatusbar( $out );
 
         $this->assertEquals( 0, $status->getFailureCount() );
-        
+
         ob_start();
         foreach ( $this->stati as $statusVal )
         {
             $status->add($statusVal);
         }
         ob_end_clean();
-        
+
         $this->assertEquals( 11, $status->getFailureCount() );
     }
 

@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -26,15 +26,15 @@
  */
 
 /**
- * Creating tables to be printed to the console. 
+ * Creating tables to be printed to the console.
  *
  * Every ezcConsoleTable object can be accessed as if it was a multidimensional,
- * numerically indexed array. The first dimension represents the rows of the 
- * table, so $table[0] gives you access to the first row of the table, which is 
- * represented by a {@link ezcConsoleTableRow} object. You can access its 
- * properties directly, using e.g. $table[0]->format. The second dimension gives 
- * you direct access to the cells of your table, like $table[0][0] accesses the 
- * first cell in the first row of your table. You can access its properties 
+ * numerically indexed array. The first dimension represents the rows of the
+ * table, so $table[0] gives you access to the first row of the table, which is
+ * represented by a {@link ezcConsoleTableRow} object. You can access its
+ * properties directly, using e.g. $table[0]->format. The second dimension gives
+ * you direct access to the cells of your table, like $table[0][0] accesses the
+ * first cell in the first row of your table. You can access its properties
  * diretly here, too. This works like e.g. $table[0][0]->format. Table row and
  * cell objects are created on the fly, when you access them for the first time.
  * You can also create them as if you simply create new array elements. E.g.
@@ -49,37 +49,37 @@
  * // Define a new format "sum"
  * $out->formats->sum->color = 'blue';
  * $out->formats->sum->style = array( 'negative' );
- * 
+ *
  * // Create a new table
  * $table = new ezcConsoleTable( $out, 60 );
- * 
+ *
  * // Create first row and in it the first cell
  * $table[0][0]->content = 'Headline 1';
- * 
+ *
  * // Create 3 more cells in row 0
  * for ( $i = 2; $i < 5; $i++ )
  * {
  *      $table[0][]->content = "Headline $i";
  * }
- * 
+ *
  * $data = array( 1, 2, 3, 4 );
- * 
+ *
  * // Create some more data in the table...
  * foreach ( $data as $value )
  * {
  *      // Create a new row each time and set it's contents to the actual value
  *      $table[][0]->content = $value;
  * }
- * 
+ *
  * // Set another border format for our headline row
  * $table[0]->borderFormat = 'headline';
- * 
+ *
  * // Set the content format for all cells of the 3rd row to "sum"
  * $table[2]->format = 'sum';
- * 
+ *
  * $table->outputTable();
  * </code>
- * 
+ *
  * @property ezcConsoleTableOptions $options
  *           Contains the options for this class.
  * @property int $width
@@ -110,9 +110,9 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      * @see ezcConsoleTable::$options
      */
     const WRAP_CUT  = 3;
-    
+
     /**
-     * Align text in the default direction. 
+     * Align text in the default direction.
      */
     const ALIGN_DEFAULT = -1;
     /**
@@ -129,7 +129,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     const ALIGN_CENTER = STR_PAD_BOTH;
 
     /**
-     * The width given by settings must be used even if the data allows it smaller. 
+     * The width given by settings must be used even if the data allows it smaller.
      */
     const WIDTH_FIXED = 1;
     /**
@@ -152,15 +152,15 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     protected $outputHandler;
 
     /**
-     * Collection of the rows that are contained in the table. 
-     * 
+     * Collection of the rows that are contained in the table.
+     *
      * @var array(ezcConsoleTableRow)
      */
     protected $rows;
 
     /**
      * Tool object for multi-byte encoding safe string operations.
-     * 
+     *
      * @var ezcConsoleStringTool
      */
     private $stringTool;
@@ -176,7 +176,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      *
      * @throws ezcBaseValueException On an invalid setting.
      */
-    public function __construct( ezcConsoleOutput $outHandler, $width, $options = array() ) 
+    public function __construct( ezcConsoleOutput $outHandler, $width, $options = array() )
     {
         $this->rows = array();
         $this->outputHandler = $outHandler;
@@ -208,16 +208,16 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      * @throws ezcBaseSettingValueException
      *         If the value is not valid for the desired option.
      * @throws ezcBaseValueException
-     *         If you submit neither an array nor an instance of 
+     *         If you submit neither an array nor an instance of
      *         ezcConsoleTableOptions.
      */
-    public function setOptions( $options = array() ) 
+    public function setOptions( $options = array() )
     {
-        if ( is_array( $options ) ) 
+        if ( is_array( $options ) )
         {
             $this->properties['options']->merge( $options );
-        } 
-        else if ( $options instanceof ezcConsoleTableOptions ) 
+        }
+        else if ( $options instanceof ezcConsoleTableOptions )
         {
             $this->properties['options'] = $options;
         }
@@ -230,7 +230,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     /**
      * Returns the current options.
      * Returns the options currently set for this table.
-     * 
+     *
      * @return ezcConsoleTableOptions The current options.
      */
     public function getOptions()
@@ -262,7 +262,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      *
      * @return void
      */
-    public function outputTable() 
+    public function outputTable()
     {
         echo implode( PHP_EOL, $this->generateTable() );
     }
@@ -281,10 +281,10 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      * Returns if the given offset exists.
      * This method is part of the ArrayAccess interface to allow access to the
      * data of this object as if it was an array.
-     * 
+     *
      * @param int $offset The offset to check.
      * @return bool True when the offset exists, otherwise false.
-     * 
+     *
      * @throws ezcBaseValueException
      *         If a non numeric row ID is requested.
      */
@@ -300,12 +300,12 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     // From here only interface method implementations follow, which are not intended for direct usage
 
     /**
-     * Returns the element with the given offset. 
+     * Returns the element with the given offset.
      * This method is part of the ArrayAccess interface to allow access to the
      * data of this object as if it was an array. In case of the
      * ezcConsoleTable class this method always returns a valid row object
      * since it creates them on the fly, if a given item does not exist.
-     * 
+     *
      * @param int $offset The offset to check.
      * @return ezcConsoleTableCell
      *
@@ -327,10 +327,10 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     }
 
     /**
-     * Set the element with the given offset. 
+     * Set the element with the given offset.
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param int $offset               The offset to assign an item to.
      * @param ezcConsoleTableRow $value The row to assign.
      * @return void
@@ -358,10 +358,10 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     }
 
     /**
-     * Unset the element with the given offset. 
+     * Unset the element with the given offset.
      * This method is part of the ArrayAccess interface to allow access to the
-     * data of this object as if it was an array. 
-     * 
+     * data of this object as if it was an array.
+     *
      * @param int $offset The offset to unset the value for.
      * @return void
      *
@@ -395,10 +395,10 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Returns the currently selected cell.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * cells of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return ezcConsoleTableCell The currently selected cell.
      */
     public function current()
@@ -408,10 +408,10 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Returns the key of the currently selected cell.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * cells of this row by iterating over it like an array (e.g. using
      * foreach).
-     * 
+     *
      * @return int The key of the currently selected cell.
      */
     public function key()
@@ -421,7 +421,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Returns the next cell and selects it or false on the last cell.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * cells of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -434,7 +434,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Selects the very first cell and returns it.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * cells of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -447,7 +447,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Returns if the current cell is valid.
-     * This method is part of the Iterator interface to allow access to the 
+     * This method is part of the Iterator interface to allow access to the
      * cells of this row by iterating over it like an array (e.g. using
      * foreach).
      *
@@ -460,7 +460,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Property read access.
-     * 
+     *
      * @param string $key Name of the property.
      * @return mixed Value of the property or null.
      *
@@ -483,7 +483,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Property write access.
-     * 
+     *
      * @param string $key Name of the property.
      * @param mixed $val  The value for the property.
      *
@@ -509,17 +509,17 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
                 {
                     throw new ezcBaseValueException( $key, $val, 'int > 0' );
                 }
-                $this->properties[$key] = $val; 
+                $this->properties[$key] = $val;
                 return;
             default:
                 break;
         }
         throw new ezcBasePropertyNotFoundException( $key );
     }
- 
+
     /**
      * Property isset access.
-     * 
+     *
      * @param string $key Name of the property.
      * @return bool True is the property is set, otherwise false.
      * @ignore
@@ -537,15 +537,15 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     }
 
     /**
-     * Generate the complete table as an array. 
-     * 
+     * Generate the complete table as an array.
+     *
      * @return array(string) The table.
      */
     private function generateTable()
     {
         $colWidth = $this->getColWidths();
         $table = array();
-        
+
         if ( $this->options->lineVertical !== null )
         {
             $table[] = $this->generateBorder(
@@ -575,12 +575,12 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
             $table[] = $this->generateBorder( $colWidth, 'default' );
         }
 
-        return $table; 
+        return $table;
     }
 
     /**
-     * Generate top/bottom borders of rows. 
-     * 
+     * Generate top/bottom borders of rows.
+     *
      * @param array(int) $colWidth Array of column width.
      * @param string $format            Format name.
      * @return string The Border string.
@@ -606,7 +606,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     /**
      * Generate a single physical row.
      * This method generates the string for a single physical table row.
-     * 
+     *
      * @param array(string) $cells Cells of the row.
      * @param array(int) $colWidth Calculated columns widths.
      * @param ezcConsoleTableRow $row   The row to generate.
@@ -620,10 +620,10 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
             $align = $this->determineAlign( $row, $cell );
             $format = $this->determineFormat( $row, $cell );
             $borderFormat = $this->determineBorderFormat( $row );
-            
+
             $data = isset( $cells[$cell] ) ? $cells[$cell] : '';
-            $rowData .= $this->formatText( 
-                            $this->properties['options']->lineHorizontal, 
+            $rowData .= $this->formatText(
+                            $this->properties['options']->lineHorizontal,
                             $borderFormat
                         );
             $rowData .= $this->properties['options']->colPadding;
@@ -639,18 +639,18 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Determine the alignment of a cell.
-     * Walks the inheritance path upwards to determine the alignment of a 
-     * cell. Checks first, if the cell has it's own alignment (apart from 
-     * ezcConsoleTable::ALIGN_DEFAULT). If not, checks the row for an 
+     * Walks the inheritance path upwards to determine the alignment of a
+     * cell. Checks first, if the cell has it's own alignment (apart from
+     * ezcConsoleTable::ALIGN_DEFAULT). If not, checks the row for an
      * alignment setting and uses the default alignment if not found.
-     * 
+     *
      * @param ezcConsoleTableRow $row The row this cell belongs to.
      * @param int $cellId             Index of the desired cell.
      * @return int An alignement constant (ezcConsoleTable::ALIGN_*).
      */
     private function determineAlign( $row, $cellId = 0 )
     {
-        return ( $row[$cellId]->align !== ezcConsoleTable::ALIGN_DEFAULT 
+        return ( $row[$cellId]->align !== ezcConsoleTable::ALIGN_DEFAULT
             ? $row[$cellId]->align
             : ( $row->align !== ezcConsoleTable::ALIGN_DEFAULT
                 ? $row->align
@@ -661,11 +661,11 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Determine the format of a cells content.
-     * Walks the inheritance path upwards to determine the format of a 
-     * cells content. Checks first, if the cell has it's own format (apart 
-     * from 'default'). If not, checks the row for a format setting and 
+     * Walks the inheritance path upwards to determine the format of a
+     * cells content. Checks first, if the cell has it's own format (apart
+     * from 'default'). If not, checks the row for a format setting and
      * uses the default format if not found.
-     * 
+     *
      * @param ezcConsoleTableRow $row The row this cell belongs to.
      * @param int $cellId             Index of the desired cell.
      * @return string A format name.
@@ -681,10 +681,10 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Determine the format of a rows border.
-     * Walks the inheritance path upwards to determine the format of a 
-     * rows border. Checks first, if the row has it's own format (apart 
+     * Walks the inheritance path upwards to determine the format of a
+     * rows border. Checks first, if the row has it's own format (apart
      * from 'default'). If not, uses the default format.
-     * 
+     *
      * @param ezcConsoleTableRow $row   The row this cell belongs to.
      * @return string A format name.
      */
@@ -697,26 +697,26 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
     /**
      * Returns auto broken rows from an array of cells.
-     * The data provided by a user may not fit into a cell calculated by the 
-     * class. In this case, the data can be automatically wrapped. The table 
+     * The data provided by a user may not fit into a cell calculated by the
+     * class. In this case, the data can be automatically wrapped. The table
      * row then spans over multiple physical console lines.
-     * 
+     *
      * @param array(string) $cells Array of cells in one row.
      * @param array(int) $colWidth Columns widths array.
      * @return array(string) Physical rows generated out of this row.
      */
-    private function breakRows( $cells, $colWidth ) 
+    private function breakRows( $cells, $colWidth )
     {
         $rows = array();
         // Iterate through cells of the row
-        foreach ( $colWidth as $cell => $width ) 
+        foreach ( $colWidth as $cell => $width )
         {
             $data = $cells[$cell]->content;
             // Physical row id, start with 0 for each row
             $row = 0;
             // Split into multiple physical rows if manual breaks exist
             $dataLines = explode( "\n", $data );
-            foreach ( $dataLines as $dataLine ) 
+            foreach ( $dataLines as $dataLine )
             {
                 // Does the physical row fit?
                 if ( iconv_strlen( $dataLine, 'UTF-8' ) > ( $colWidth[$cell] ) )
@@ -752,7 +752,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     }
 
     /**
-     * Determine width of each single column. 
+     * Determine width of each single column.
      *
      * @return void
      */
@@ -782,19 +782,19 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
         // Subtract border and padding chars from global width
         $globalWidth = $this->width
-            - ( 
+            - (
                 // Per column: 2 * border padding + 1 border
                 $colCount * (
                     2 * iconv_strlen( $this->properties['options']->colPadding, 'UTF-8' )
-                    + $borderWidth 
-                ) 
+                    + $borderWidth
+                )
               // 1 Additional border
               ) - $borderWidth;
-        
+
         // Width of a column if each is made equal
         $colNormWidth = round( $globalWidth / $colCount );
         $colMaxWidth = array();
-        
+
         // Determine the longest data for each column
         foreach ( $this->rows as $row => $cells )
         {
@@ -814,13 +814,13 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
         $colWidth = array();
         $colWidthOverflow = array();
         $spareWidth = 0;
-        
+
         // Make columns best fit
         foreach ( $colMaxWidth as $col => $maxWidth )
         {
-            // Does the largest data of the column fit into the average size 
+            // Does the largest data of the column fit into the average size
             // + what we have in spare from earlier columns?
-            if ( $maxWidth <= ( $colNormWidth + $spareWidth ) ) 
+            if ( $maxWidth <= ( $colNormWidth + $spareWidth ) )
             {
                 // We fit in, make the column as large as necessary
                 $colWidth[$col] = $maxWidth;
@@ -835,7 +835,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
                 $colWidthOverflow[$col] = $maxWidth - $colWidth[$col];
             }
         }
-        
+
         // Do we have spare to give to the columns again?
         if ( $spareWidth > 0 )
         {
@@ -857,7 +857,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
                 }
             }
         }
-        
+
         // Finally sanitize values from rounding issues, if necessary
         if ( ( $colSum = array_sum( $colWidth ) ) != $globalWidth && $this->properties['options']->widthType === ezcConsoleTable::WIDTH_FIXED )
         {
@@ -869,11 +869,11 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     /**
      * Returns the given $text formatted with $format.
      *
-     * In case $useFormats is set to false in the output handler, the text is 
+     * In case $useFormats is set to false in the output handler, the text is
      * returned as given, without any formatting.
-     * 
-     * @param string $text 
-     * @param string $format 
+     *
+     * @param string $text
+     * @param string $format
      * @return string
      */
     private function formatText( $text, $format )

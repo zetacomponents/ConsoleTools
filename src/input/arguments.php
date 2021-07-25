@@ -60,6 +60,7 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
      * @throws ezcBaseValueException
      *         If the provided offset is neither an integer, nor a string.
      */
+    #[ReturnTypeWillChange]
     public function offsetExists( $offset )
     {
         switch ( gettype( $offset ) )
@@ -74,18 +75,19 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
     }
 
     /**
-     * Returns the element with the given offset. 
+     * Returns the element with the given offset.
      * This method is part of the ArrayAccess interface to allow access to the
      * data of this object as if it was an array. Valid offsets are integers or
      * strings. If an integer is used, it refers to the position in the command
      * line. A string refers to the arguments name property.
-     * 
+     *
      * @param string|integer $offset The offset to check.
      * @return ezcConsoleArgument
      *
      * @throws ezcBaseValueException
      *         If the provided offset is neither an integer, nor a string.
      */
+    #[ReturnTypeWillChange]
     public function offsetGet( $offset )
     {
         switch ( gettype( $offset ) )
@@ -126,6 +128,7 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
      * @throws ezcConsoleArgumentAlreadyRegisteredException
      *         If an argument with the given offset or name is already registered.
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $offset, $value )
     {
         // Determine key if not set (using $obj[] = ...)
@@ -178,6 +181,7 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
      * @throws ezcBaseValueException
      *         If a non numeric row offset is used.
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset( $offset )
     {
         // Set access only allowed with integer values
@@ -193,9 +197,10 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
     /**
      * Returns the currently selected argument from the list.
      * Used by foreach-Loops.
-     * 
+     *
      * @return ezcConsoleArgument
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current( $this->ordered );
@@ -209,17 +214,19 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
      * 
      * @return string
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key( $this->ordered );
     }
 
     /**
-     * Advances the internal pointer to the next argument and returns it. 
+     * Advances the internal pointer to the next argument and returns it.
      * Used by foreach-Loops.
-     * 
+     *
      * @return ezcConsoleArgument
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next( $this->ordered );
@@ -228,9 +235,10 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
     /**
      * Rewinds the internal pointer to the first argument and returns it.
      * Used by foreach-Loops.
-     * 
+     *
      * @return ezcConsoleArgument
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         // Called before foreach
@@ -244,6 +252,7 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
      * 
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return ( current( $this->ordered ) !== false );
@@ -254,6 +263,7 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
      * 
      * @return int
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         return count( $this->ordered );

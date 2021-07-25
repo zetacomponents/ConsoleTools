@@ -129,6 +129,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      * @throws ezcBaseValueException
      *         If a non numeric cell ID is requested.
      */
+    #[ReturnTypeWillChange]
     public function offsetExists( $offset )
     {
         if ( !is_int( $offset ) || $offset < 0 )
@@ -151,6 +152,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      * @throws ezcBaseValueException
      *         If a non numeric cell ID is requested.
      */
+    #[ReturnTypeWillChange]
     public function offsetGet( $offset )
     {
         if ( !isset( $offset ) )
@@ -183,6 +185,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      * @throws ezcBaseValueException
      *         If the provided value is not of type {@ling ezcConsoleTableCell}.
      */
+    #[ReturnTypeWillChange]
     public function offsetSet( $offset, $value )
     {
         if ( !( $value instanceof ezcConsoleTableCell ) )
@@ -211,6 +214,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      * @throws ezcBaseValueException
      *         If a non numeric cell ID is requested.
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset( $offset )
     {
         if ( !is_int( $offset ) || $offset < 0 )
@@ -230,6 +234,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      *
      * @return int Number of cells in this row.
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         $keys = array_keys( $this->cells );
@@ -244,6 +249,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      * 
      * @return ezcConsoleTableCell The currently selected cell.
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current( $this->cells );
@@ -257,6 +263,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      * 
      * @return int The key of the currently selected cell.
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key( $this->cells );
@@ -270,6 +277,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      *
      * @return mixed ezcConsoleTableCell if the next cell exists, or false.
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next( $this->cells );
@@ -283,6 +291,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      *
      * @return ezcConsoleTableCell The very first cell of this row.
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset( $this->cells );
@@ -296,6 +305,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      *
      * @return ezcConsoleTableCell The very first cell of this row.
      */
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return current( $this->cells ) !== false;

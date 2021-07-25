@@ -83,6 +83,7 @@ class ezcConsoleOutputFormats implements Iterator, Countable
      * 
      * @return ezcConsoleOutputFormat
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current( $this->formats );
@@ -95,6 +96,7 @@ class ezcConsoleOutputFormats implements Iterator, Countable
      * 
      * @return ezcConsoleOutputFormat|bool
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next( $this->formats );
@@ -107,6 +109,7 @@ class ezcConsoleOutputFormats implements Iterator, Countable
      * 
      * @return string
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key( $this->formats );
@@ -119,6 +122,7 @@ class ezcConsoleOutputFormats implements Iterator, Countable
      * 
      * @return ezcConsoleOutputFormat
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset( $this->formats );
@@ -131,6 +135,7 @@ class ezcConsoleOutputFormats implements Iterator, Countable
      * 
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return ( current( $this->formats ) !== false );
@@ -143,6 +148,7 @@ class ezcConsoleOutputFormats implements Iterator, Countable
      * 
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         return count( $this->formats );

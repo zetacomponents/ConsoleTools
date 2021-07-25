@@ -1,7 +1,7 @@
 <?php
 /**
  * ezcConsoleOutputTest class.
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,33 +27,33 @@
 
 /**
  * Test suite for ezcConsoleTable class.
- * 
+ *
  * @package ConsoleTools
  * @subpackage Tests
  */
 class ezcConsoleTableTest extends ezcTestCase
 {
-    private $tableData1 = array( 
+    private $tableData1 = array(
         array( 'Heading no. 1', 'Longer heading no. 2', 'Head 3' ),
         array( 'Data cell 1', 'Data cell 2', 'Data cell 3' ),
         array( 'Long long data cell with even more text in it...', 'Data cell 4', 'Data cell 5' ),
         array( 'a b c d e f g h i j k l m n o p q r s t u v w x ', 'Data cell', 'Data cell' ),
     );
 
-    private $tableData2 = array( 
+    private $tableData2 = array(
         array( 'a', 'b', 'c', 'd', 'e', 'f' ),
         array( 'g', 'h', 'i', 'j', 'k', 'l' ),
     );
 
-    private $tableData3 = array( 
+    private $tableData3 = array(
         array( 'Parameter', 'Shortcut', 'Descrition' ),
         array( 'Append text to a file. This parameter takes a string value and may be used multiple times.', '--append', '-a' ),
         array( 'Prepend text to a file. This parameter takes a string value and may be used multiple times.', '--prepend', '-p' ),
         array( 'Forces the action desired without paying attention to any errors.', '--force', '-f' ),
         array( 'Silence all kinds of warnings issued by this program.', '--silent', '-s' ),
     );
-    
-    private $tableData4 = array( 
+
+    private $tableData4 = array(
         array( 'Some very very long data here.... and it becomes even much much longer... and even longer....', 'Short', 'Some very very long data here.... and it becomes even much much longer... and even longer....', 'Short' ),
         array( 'Short', "Some very very long data here....\n\nand it becomes even much much longer...\n\nand even longer....", 'Short', 'Some very very long data here.... and it becomes even much much longer... and even longer....' ),
     );
@@ -73,23 +73,23 @@ class ezcConsoleTableTest extends ezcTestCase
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleTableTest" );
 	}
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->output = new ezcConsoleOutput();
         $formats = array(
-            'red' => array( 
+            'red' => array(
                 'color' => 'red',
                 'style' => 'bold'
             ),
-            'blue' => array( 
+            'blue' => array(
                 'color' => 'blue',
                 'style' => 'bold'
             ),
-            'green' => array( 
+            'green' => array(
                 'color' => 'green',
                 'style' => 'bold'
             ),
-            'magenta' => array( 
+            'magenta' => array(
                 'color' => 'magenta',
                 'style' => 'bold'
             ),
@@ -106,25 +106,25 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testTable1a()
     {
         $this->commonTableTest(
-            __FUNCTION__, 
+            __FUNCTION__,
             $this->tableData1,
             array( 'cols' => count( $this->tableData1[0] ), 'width' => 80 ),
             array( 'lineFormatHead' => 'green' ),
             array( 0 )
         );
     }
-    
+
     public function testTable1b()
     {
         $this->commonTableTest(
-            __FUNCTION__, 
+            __FUNCTION__,
             $this->tableData1,
             array( 'cols' => count( $this->tableData1[0] ), 'width' => 40 ),
             array( 'lineFormatHead' => 'red',  ),
             array( 0 )
         );
     }
-    
+
     public function testTable2a()
     {
         $this->commonTableTest(
@@ -134,7 +134,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 'lineFormatHead' => 'magenta', 'defaultAlign' => ezcConsoleTable::ALIGN_RIGHT, 'widthType' => ezcConsoleTable::WIDTH_FIXED )
         );
     }
-    
+
     public function testTable2b()
     {
         $this->commonTableTest(
@@ -144,7 +144,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 'lineFormatHead' => 'magenta', 'defaultAlign' => ezcConsoleTable::ALIGN_RIGHT )
         );
     }
-   
+
     // Bug #8738: Unexpected behaviour with options->colPadding
     public function testTableColPadding1()
     {
@@ -155,7 +155,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colPadding' => '~~~', 'widthType' => ezcConsoleTable::WIDTH_FIXED )
         );
     }
-    
+
     // Bug #8738: Unexpected behaviour with options->colPadding
     public function testTableColPadding2()
     {
@@ -166,7 +166,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colPadding' => '~~~' )
         );
     }
-    
+
     public function testTable3a()
     {
         $this->commonTableTest(
@@ -177,7 +177,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 0, 3 )
         );
     }
-    
+
     public function testTable3b()
     {
         $this->commonTableTest(
@@ -188,7 +188,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 1, 2 )
         );
     }
-    
+
     public function testTable3c()
     {
         $this->commonTableTest(
@@ -199,7 +199,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 1, 2 )
         );
     }
-    
+
     public function testTable3d()
     {
         $this->commonTableTest(
@@ -210,7 +210,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 1, 2 )
         );
     }
-     
+
     public function testTable4a()
     {
         $this->commonTableTest(
@@ -221,7 +221,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 0 )
         );
     }
-    
+
     public function testTable4b()
     {
         $this->commonTableTest(
@@ -232,7 +232,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 0 )
         );
     }
-    
+
     public function testTable4c()
     {
         $this->commonTableTest(
@@ -243,7 +243,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 0 )
         );
     }
-    
+
     public function testTable5autowidth()
     {
         $this->commonTableTest(
@@ -254,7 +254,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array()
         );
     }
-    
+
     public function testTableWithoutBorders()
     {
         $this->commonTableTest(
@@ -265,7 +265,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 0 )
         );
     }
-    
+
     public function testTableWithSpaceBorders()
     {
         $this->commonTableTest(
@@ -276,7 +276,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 0 )
         );
     }
-    
+
     public function testTableWithoutVerticalBorders()
     {
         $this->commonTableTest(
@@ -287,7 +287,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array( 0 )
         );
     }
-    
+
     public function testTableWithoutHorizontalBorders()
     {
         $this->commonTableTest(
@@ -374,7 +374,7 @@ class ezcConsoleTableTest extends ezcTestCase
             array()
         );
     }
-    
+
     public function testTableConfigurationFailure1 ()
     {
         // Missing 'cols' setting
@@ -384,7 +384,7 @@ class ezcConsoleTableTest extends ezcTestCase
         }
         catch (ezcBaseValueException $e)
         {
-            $this->assertTrue( 
+            $this->assertTrue(
                 true,
                 'Wrong exception code thrown on missing <cols> setting.'
             );
@@ -392,7 +392,7 @@ class ezcConsoleTableTest extends ezcTestCase
         }
         $this->fail( 'No or wrong exception thrown on missing <cols> setting.' );
     }
-    
+
     public function testTableConfigurationFailure2 ()
     {
         // 'cols' setting wrong type
@@ -402,7 +402,7 @@ class ezcConsoleTableTest extends ezcTestCase
         }
         catch (ezcBaseValueException $e)
         {
-            $this->assertTrue( 
+            $this->assertTrue(
                 true,
                 'Wrong exception code thrown on missing <cols> setting.'
             );
@@ -420,7 +420,7 @@ class ezcConsoleTableTest extends ezcTestCase
         }
         catch (ezcBaseValueException $e)
         {
-            $this->assertTrue( 
+            $this->assertTrue(
                 true,
                 'Wrong exception code thrown on missing <cols> setting.'
             );
@@ -448,7 +448,7 @@ class ezcConsoleTableTest extends ezcTestCase
         $table->options->corner = 'o';
         $table->options->defaultFormat = 'test';
         $table->options->defaultBorderFormat = 'test2';
-        
+
         $this->assertEquals( array( 1, 2, 3 ), $table->options->colWidth );
         $this->assertEquals( ezcConsoleTable::WRAP_CUT, $table->options->colWrap );
         $this->assertEquals( ezcConsoleTable::ALIGN_CENTER, $table->options->defaultAlign );
@@ -460,7 +460,7 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->assertEquals( 'test', $table->options->defaultFormat );
         $this->assertEquals( 'test2', $table->options->defaultBorderFormat );
     }
-    
+
     public function testSetAccessOptionsSuccess2()
     {
         $opt = new ezcConsoleTableOptions(
@@ -518,13 +518,13 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testSetAccessOptionsFailure()
     {
         $table = new ezcConsoleTable( $this->output, 80 );
-    
+
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->colWidth = 'test';
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -538,7 +538,7 @@ class ezcConsoleTableTest extends ezcTestCase
         try
         {
             $table->options->colWrap = 100;
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -548,11 +548,11 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <colWrap>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->defaultAlign = 101;
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -562,11 +562,11 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <defaultAlign>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->colPadding = 102;
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -576,11 +576,11 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <colPadding>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->widthType = 103;
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -590,11 +590,11 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <widthType>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->lineVertical = 104;
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -604,11 +604,11 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <lineVertical>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->lineHorizontal = 105;
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -618,11 +618,11 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <lineHorizontal>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->corner = 106;
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -632,11 +632,11 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <corner>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->defaultFormat = array();
-        } 
+        }
         catch ( ezcBaseValueException $e)
         {
             $exceptionThrown = true;
@@ -646,7 +646,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <defaultFormat>.');
         }
         $exceptionThrown = false;
-        
+
         try
         {
             $table->options->defaultBorderFormat = true;
@@ -660,7 +660,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->fail( 'No exception thrown on invalid setting for <defaultBorderFormat>.');
         }
         $exceptionThrown = false;
-        
+
     }
 
     public function testConstructorFailure()
@@ -707,7 +707,7 @@ class ezcConsoleTableTest extends ezcTestCase
         $table->setOptions( $optArr );
 
         $this->assertEquals( $optObj, $table->options );
-        
+
         $table = new ezcConsoleTable( $this->output, 80 );
         $table->setOptions( $optObj );
 
@@ -774,7 +774,7 @@ class ezcConsoleTableTest extends ezcTestCase
             "Table not printed correctly on use of outputTable()"
         );
     }
-    
+
     public function testOffsetExistsSuccess()
     {
         $table = new ezcConsoleTable( $this->output, 80 );
@@ -787,7 +787,7 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testOffsetExistsFailure()
     {
         $table = new ezcConsoleTable( $this->output, 80 );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -798,7 +798,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $exceptionThrown = true;
         }
         $this->assertTrue( $exceptionThrown, "ezcBaseValueException not thrown on negative offset." );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -824,7 +824,7 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testOffsetGetFailure()
     {
         $table = new ezcConsoleTable( $this->output, 80 );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -835,7 +835,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $exceptionThrown = true;
         }
         $this->assertTrue( $exceptionThrown, "ezcBaseValueException not thrown on invalid string offset." );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -853,15 +853,15 @@ class ezcConsoleTableTest extends ezcTestCase
         $table = new ezcConsoleTable( $this->output, 80 );
         $table[0] = new ezcConsoleTableRow();
         $table[] = new ezcConsoleTableRow();
-        
+
         $this->assertTrue( isset( $table[0] ) );
         $this->assertTrue( isset( $table[1] ) );
     }
-    
+
     public function testOffsetSetFailure()
     {
         $table = new ezcConsoleTable( $this->output, 80 );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -872,7 +872,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $exceptionThrown = true;
         }
         $this->assertTrue( $exceptionThrown, "ezcBaseValueException not thrown on negative offset." );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -883,7 +883,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $exceptionThrown = true;
         }
         $this->assertTrue( $exceptionThrown, "ezcBaseValueException not thrown on character offset." );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -901,7 +901,7 @@ class ezcConsoleTableTest extends ezcTestCase
         $table = new ezcConsoleTable( $this->output, 80 );
         $table[0] = new ezcConsoleTableRow();
         $table[] = new ezcConsoleTableRow();
-        
+
         $this->assertTrue( isset( $table[0] ) );
         $this->assertTrue( isset( $table[1] ) );
 
@@ -911,11 +911,11 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->assertFalse( isset( $table[0] ) );
         $this->assertFalse( isset( $table[1] ) );
     }
-    
+
     public function testOffsetUnsetFailure()
     {
         $table = new ezcConsoleTable( $this->output, 80 );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -926,7 +926,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $exceptionThrown = true;
         }
         $this->assertTrue( $exceptionThrown, "ezcBaseValueException not thrown on negative offset." );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -949,7 +949,7 @@ class ezcConsoleTableTest extends ezcTestCase
         }
         $refRow = new ezcConsoleTableRow();
         $refRow->borderFormat = "green";
-        
+
         // First iteration
         $i = 0;
         foreach ( $table as $id => $row )
@@ -958,7 +958,7 @@ class ezcConsoleTableTest extends ezcTestCase
             $this->assertEquals( $refRow, $row );
         }
         $this->assertEquals( 10, $i, "Not iterated through all rows." );
-        
+
         // Second iteration
         $i = 0;
         foreach ( $table as $id => $row )
@@ -994,7 +994,7 @@ class ezcConsoleTableTest extends ezcTestCase
     {
         $table = new ezcConsoleTable( $this->output, 100 );
         $opt = new ezcConsoleTableOptions();
-        
+
         $table->options = $opt;
         $table->width = 80;
 
@@ -1048,14 +1048,14 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->assertTrue( isset( $table->options ) );
         $this->assertFalse( isset( $table->foo ) );
     }
-    
+
     private function commonTableTest( $refFile, $tableData, $settings, $options, $headrows = array() )
     {
-        $table =  new ezcConsoleTable( 
+        $table =  new ezcConsoleTable(
             $this->output,
             $settings['width']
         );
-        
+
         // Set options
         foreach ( $options as $key => $val )
         {
@@ -1074,7 +1074,7 @@ class ezcConsoleTableTest extends ezcTestCase
                 $table[$i][$j]->content = $tableData[$i][$j];
             }
         }
-        
+
         // Set a specific cell format
         $table[0][0]->format = 'red';
 
@@ -1083,7 +1083,7 @@ class ezcConsoleTableTest extends ezcTestCase
         {
             $table[$row]->borderFormat = isset( $options['lineFormatHead'] ) ? $options['lineFormatHead'] : 'default';
         }
-        
+
         // For visual inspection, uncomment this block
 //        echo "\n\n";
 //        echo "Old $refFile:\n:";
@@ -1091,7 +1091,7 @@ class ezcConsoleTableTest extends ezcTestCase
 //        echo "New $refFile:\n:";
 //        echo implode( "\n", $table->getTable() );
 //        echo "\n\n";
-        
+
         $this->assertTableOutputEquals(
             $refFile,
             (string) $table
@@ -1100,15 +1100,15 @@ class ezcConsoleTableTest extends ezcTestCase
 
     protected function assertTableOutputEquals( $expectedRef, $actualContent )
     {
-        $refFile = dirname( __FILE__ ) 
-            . '/data/' 
+        $refFile = dirname( __FILE__ )
+            . '/data/'
             . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" )
             . $expectedRef
             . '.dat';
 
         // To prepare test files, uncomment this block
         // file_put_contents( $refFile, $actualContent );
-        
+
         if ( !file_exists( $refFile ) )
         {
             // Default assert for new files.

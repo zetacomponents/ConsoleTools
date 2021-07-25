@@ -1,7 +1,7 @@
 <?php
 /**
  * ezcConsoleOutputTest class.
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,52 +27,52 @@
 
 /**
  * Test suite for ezcConsoleOutput class.
- * 
+ *
  * @package ConsoleTools
  * @subpackage Tests
  */
 class ezcConsoleOutputTest extends ezcTestCase
 {
     /**
-     * testString 
-     * 
+     * testString
+     *
      * @var string
      */
     private $testString = 'A passion for php';
 
     private $testFormats = array(
         'color_only_1' => array(
-            'in'  => array( 
+            'in'  => array(
                 'color' => 'blue',
             ),
             'out' => "\033[34m%s\033[0m"
         ),
-        'color_only_2' => array( 
-            'in'  => array( 
+        'color_only_2' => array(
+            'in'  => array(
                 'color' => 'red',
             ),
             'out' => "\033[31m%s\033[0m"
         ),
-        'bgcolor_only_1' => array( 
-            'in'  => array( 
+        'bgcolor_only_1' => array(
+            'in'  => array(
                 'bgcolor' => 'green',
             ),
             'out' => "\033[42m%s\033[0m"
         ),
-        'bgcolor_only_2' => array( 
-            'in'  => array( 
+        'bgcolor_only_2' => array(
+            'in'  => array(
                 'bgcolor' => 'yellow',
             ),
             'out' => "\033[43m%s\033[0m"
         ),
-        'style_only_1' => array( 
-            'in'  => array( 
+        'style_only_1' => array(
+            'in'  => array(
                 'style' => 'bold',
             ),
             'out' => "\033[1m%s\033[0m"
         ),
-        'style_only_2' => array( 
-            'in'  => array( 
+        'style_only_2' => array(
+            'in'  => array(
                 'style' => 'negative',
             ),
             'out' => "\033[7m%s\033[0m"
@@ -80,8 +80,8 @@ class ezcConsoleOutputTest extends ezcTestCase
     );
 
     /**
-     * consoleOutput 
-     * 
+     * consoleOutput
+     *
      * @var mixed
      */
     private $consoleOutput;
@@ -91,10 +91,10 @@ class ezcConsoleOutputTest extends ezcTestCase
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleOutputTest" );
 	}
 
-    protected function setUp()
+    protected function setUp() : void
     {
         $this->consoleOutput = new ezcConsoleOutput();
-        foreach ( $this->testFormats as $name => $inout ) 
+        foreach ( $this->testFormats as $name => $inout )
         {
             foreach ( $inout['in'] as $formatName => $val )
             {
@@ -103,25 +103,25 @@ class ezcConsoleOutputTest extends ezcTestCase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         unset( $this->consoleOutput );
     }
 
     /**
      * testFormatText
-     * 
+     *
      * @access public
      */
     public function testFormatText()
     {
-        foreach ( $this->testFormats as $name => $inout ) 
+        foreach ( $this->testFormats as $name => $inout )
         {
             $realRes = $this->consoleOutput->formatText( $this->testString, $name );
             $fakeRes = ezcBaseFeatures::os() !== "Windows" ? sprintf( $inout['out'], $this->testString ) : $this->testString;
-            $this->assertEquals( 
+            $this->assertEquals(
                 $realRes,
-                $fakeRes, 
+                $fakeRes,
                 "Test <{$name}> failed. String <{$realRes}> (real) is not equal to <{$fakeRes}> (fake)."
             );
         }
@@ -129,20 +129,20 @@ class ezcConsoleOutputTest extends ezcTestCase
 
     /**
      * testOutputText
-     * 
+     *
      * @access public
      */
     public function testOutputText()
     {
-        foreach ( $this->testFormats as $name => $inout ) 
+        foreach ( $this->testFormats as $name => $inout )
         {
             ob_start();
             $this->consoleOutput->outputText( $this->testString, $name );
             $realRes = ob_get_contents();
             ob_end_clean();
             $fakeRes = ezcBaseFeatures::os() !== "Windows" ? sprintf( $inout['out'], $this->testString ) : $this->testString;
-            $this->assertEquals( 
-                $fakeRes, 
+            $this->assertEquals(
+                $fakeRes,
                 $realRes,
                 "Test <{$name}> failed. String <{$realRes}> (real) is not equal to <{$fakeRes}> (fake)."
             );
@@ -151,7 +151,7 @@ class ezcConsoleOutputTest extends ezcTestCase
 
     /**
      * testOutputTextAutobreak
-     * 
+     *
      * @access public
      */
     public function testOutputTextAutobreak()
@@ -161,18 +161,18 @@ class ezcConsoleOutputTest extends ezcTestCase
 
         $testResText = 'Some text which is' . PHP_EOL . 'obviously longer' . PHP_EOL . 'than 20 characters' . PHP_EOL . 'and should be' . PHP_EOL . 'broken.';
 
-        foreach ( $this->testFormats as $name => $inout ) 
+        foreach ( $this->testFormats as $name => $inout )
         {
             ob_start();
             $this->consoleOutput->outputText( $testText, $name );
             $realRes = ob_get_contents();
             ob_end_clean();
-            
+
             $fakeRes = ezcBaseFeatures::os() !== "Windows" ? sprintf( $inout['out'], $testResText ) : $testResText;
-            $this->assertEquals( 
-                $fakeRes, 
-                $realRes, 
-                'Test "' . $name . ' failed. String <' . $realRes . '> (real) is not equal to <' . $fakeRes . '> (fake).' 
+            $this->assertEquals(
+                $fakeRes,
+                $realRes,
+                'Test "' . $name . ' failed. String <' . $realRes . '> (real) is not equal to <' . $fakeRes . '> (fake).'
             );
         }
     }
@@ -183,7 +183,7 @@ class ezcConsoleOutputTest extends ezcTestCase
         $this->consoleOutput->formats->aliasBG->color = "white";
         $this->consoleOutput->formats->realBG->bgcolor = "black";
         $this->consoleOutput->formats->realBG->color = "white";
-        
+
         $this->consoleOutput->formats->realFG->color = "gray";
         $this->consoleOutput->formats->realFG->bgcolor = "white";
         $this->consoleOutput->formats->aliasFG->color = "black";
@@ -210,7 +210,7 @@ class ezcConsoleOutputTest extends ezcTestCase
         $this->consoleOutput->formats->targetFile->target = $outFile;
         $this->consoleOutput->formats->targetFile->color = "blue";
         $this->consoleOutput->outputText( "Hello, I'm a cool text, written to a file!", "targetFile" );
-        
+
         $fakeRes = $this->consoleOutput->formatText( "Hello, I'm a cool text, written to a file!", "targetFile" );
 
         unset( $this->consoleOutput );
@@ -341,7 +341,7 @@ class ezcConsoleOutputTest extends ezcTestCase
     public function testIssetAccess()
     {
         $output = new ezcConsoleOutput();
-        
+
         $this->assertTrue( isset( $output->options ) );
         $this->assertTrue( isset( $output->formats ) );
         $this->assertFalse( isset( $output->foo ) );
@@ -375,7 +375,7 @@ class ezcConsoleOutputTest extends ezcTestCase
         $output->outputText( "Test 123" );
         $output->toPos( 6 );
         $output->outputText( "456" );
-        
+
         $res = ob_get_clean();
         $exp = '[0mTest 123[0m[6G[0m456[0m';
 

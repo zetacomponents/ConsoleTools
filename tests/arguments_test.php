@@ -1,7 +1,7 @@
 <?php
 /**
  * ezcConsoleArgumentsTest class.
- * 
+ *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,7 +27,7 @@
 
 /**
  * Test suite for ezcConsoleArguments class.
- * 
+ *
  * @package ConsoleTools
  * @subpackage Tests
  */
@@ -38,10 +38,6 @@ class ezcConsoleArgumentsTest extends ezcTestCase
 	{
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleArgumentsTest" );
 	}
-
-    protected function setUp()
-    {
-    }
 
     public function testOffsetSetSuccess()
     {
@@ -158,7 +154,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         $this->assertEquals( $args[4], new ezcConsoleArgument( "arg 4" ) );
         $this->assertEquals( $args[5], new ezcConsoleArgument( "arg 5" ) );
         $this->assertEquals( $args[6], new ezcConsoleArgument( "arg 6" ) );
-        
+
         $this->assertEquals( $args["arg 0"], new ezcConsoleArgument( "arg 0" ) );
         $this->assertEquals( $args["arg 2"], new ezcConsoleArgument( "arg 2" ) );
         $this->assertEquals( $args["arg 4"], new ezcConsoleArgument( "arg 4" ) );
@@ -171,7 +167,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         $args = new ezcConsoleArguments();
         $args[0] = new ezcConsoleArgument( "arg 0" );
         $args[1] = new ezcConsoleArgument( "arg 1" );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -182,7 +178,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
             $exceptionThrown = true;
         }
         $this->assertTrue( $exceptionThrown, "ezcBaseValueException not thrown on get access with invalid offset true." );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -193,7 +189,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
             $exceptionThrown = true;
         }
         $this->assertTrue( $exceptionThrown, "ezcBaseProperytNotFoundException not thrown on get access with non-existent integer offset 2." );
-        
+
         $exceptionThrown = false;
         try
         {
@@ -274,7 +270,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         $args[1] = new ezcConsoleArgument( "arg 1" );
         $args[5] = new ezcConsoleArgument( "arg 5" );
         $args[]  = new ezcConsoleArgument( "arg 6" );
-        
+
         $this->assertTrue( isset( $args[0] ) );
         $this->assertTrue( isset( $args["arg 0"] ) );
 
@@ -321,7 +317,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         {
             $args[$key] = new ezcConsoleArgument( $name );
         }
-        
+
         reset( $refNames );
         foreach ( $args as $key => $arg )
         {
@@ -353,7 +349,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         {
             $args[$key] = new ezcConsoleArgument( $name );
         }
-        
+
         $this->assertEquals( 5, count( $args ) );
     }
 

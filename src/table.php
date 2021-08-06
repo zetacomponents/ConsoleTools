@@ -785,10 +785,14 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
             return array( $this->width );
         }
 
-        $borderWidth = iconv_strlen(
-            $this->properties['options']->lineHorizontal,
-            'UTF-8'
-        );
+        $borderWidth = 0;
+        if ( is_string( $this->properties['options']->lineHorizontal ) )
+        {
+            $borderWidth = iconv_strlen(
+                $this->properties['options']->lineHorizontal,
+                'UTF-8'
+            );
+        }
 
         // Subtract border and padding chars from global width
         $globalWidth = $this->width

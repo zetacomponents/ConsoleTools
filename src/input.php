@@ -1196,6 +1196,10 @@ class ezcConsoleInput
             // Multiple occurance possible
             if ( $option->multiple === true )
             {
+                if ( ! is_array( $option->value ) )
+                {
+                    $option->value = array();
+                }
                 $option->value[] = true;
             }
             else
@@ -1216,6 +1220,10 @@ class ezcConsoleInput
             // Multiple values possible
             if ( $option->multiple === true )
             {
+                if ( ! is_array( $option->value ) )
+                {
+                    $option->value = array();
+                }
                 $option->value[] = $args[$i];
             }
             // Only single value expected, check for multiple

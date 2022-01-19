@@ -1,3 +1,11 @@
+1.7.3 - Wednesday 19 January 2022
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Fixes compatibility with PHP 8.1
+- PHP 8.1: fix method signature deprecation warnings (Juliette)
+- Updates PHP Unit requirement to PHPUnit 8
+
+
 1.7.2 - Friday 30 October 2020
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

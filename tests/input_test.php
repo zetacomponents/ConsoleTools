@@ -189,6 +189,8 @@ class ezcConsoleInputTest extends ezcTestCase
         ),
     );
 
+	private $input = null;
+
 	public static function suite()
 	{
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleInputTest" );

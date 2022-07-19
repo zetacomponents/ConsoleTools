@@ -68,6 +68,8 @@ class ezcConsoleTableTest extends ezcTestCase
         array( 'Nön UTF-8 cölümn 1', 'Nön UTF-8 cölümn 2', 'Löng löng löng löng löng löng löng nön UTF-8 cölümn' ),
     );
 
+	private $output = null;
+
 	public static function suite()
 	{
 		return new PHPUnit\Framework\TestSuite( "ezcConsoleTableTest" );

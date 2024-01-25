@@ -318,7 +318,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
         $synopsis = '';
 
         // Break after a nesting level of 2
-        if ( $depth++ > 2 || ( in_array( $option->short, $usedOptions['short'] ) && in_array( $option->long, $usedOptions['long'] ) ) ) return $synopsis;
+        if ( (!is_bool($depth) && $depth++ > 2) || ( in_array( $option->short, $usedOptions['short'] ) && in_array( $option->long, $usedOptions['long'] ) ) ) return $synopsis;
         
         $usedOptions['short'][] = $option->short;
         $usedOptions['long'][]  = $option->long;

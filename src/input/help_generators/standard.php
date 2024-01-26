@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,14 +33,14 @@
  * @version //autogen//
  *
  * @access private
- * @TODO Verify interface and make it public to replace the validation in 
+ * @TODO Verify interface and make it public to replace the validation in
  *       {@link ezcConsoleInput}.
  */
 class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerator
 {
     /**
-     * Input object. 
-     * 
+     * Input object.
+     *
      * @var ezcConsoleInput
      */
     private $input;
@@ -49,7 +49,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      * Creates a new help generator.
      *
      * Creates a new help generator for the given $input.
-     * 
+     *
      * @param ezcConsoleInput $input
      */
     public function __construct( ezcConsoleInput $input )
@@ -60,7 +60,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     /**
      * Generates help information as a multidimensional array.
      *
-     * This method generates a tabular view on the help information of a 
+     * This method generates a tabular view on the help information of a
      * program. The returned array has the following structure:
      *
      * <code>
@@ -80,24 +80,24 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      * </code>
      *
      * Each row of the array represents the help information for a single option.
-     * The first cell of a row contains the option name (maybe short, long or 
+     * The first cell of a row contains the option name (maybe short, long or
      * both), the second cell contains the help text of the option.
      *
-     * The returned array is used by {@link ezcConsoleInput} for different 
+     * The returned array is used by {@link ezcConsoleInput} for different
      * purposes.
      * For example, the user can retrieve it raw through the
      * {@link ezcConsoleInput::getHelp()} method, he can generate a help
-     * {@link ezcConsoleTable} through {@link ezcConsoleInput::getHelpTable()} 
-     * are can generate a printable help text through {@link 
+     * {@link ezcConsoleTable} through {@link ezcConsoleInput::getHelpTable()}
+     * are can generate a printable help text through {@link
      * ezcConsoleInput::getHelpText()}.
      *
-     * The parameter $long defines if the long or short help text of the 
+     * The parameter $long defines if the long or short help text of the
      * options should be used in the second cell of the returned array. The
-     * $optionsFilter parameter is used to restrict the generated help to a certain 
-     * sub-set of options. It consists of an array of short or long names of 
+     * $optionsFilter parameter is used to restrict the generated help to a certain
+     * sub-set of options. It consists of an array of short or long names of
      * the options to include.
-     * 
-     * @param bool $long 
+     *
+     * @param bool $long
      * @param array(string) $optionsFilter
      * @return array(array(string))
      */
@@ -117,11 +117,11 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     /**
      * Generates help information as a multidimensional array, grouped in categories.
      *
-     * This method behaves similar to {@link generateUngroupedOptionHelp()}. In 
-     * contrast to the latter one, this method returns an array with 1 
-     * dimension more, grouping options into categories. The $groups parameter 
-     * defines the categories to generate. Each category may contain an 
-     * arbitrary number of options, options might occur in different 
+     * This method behaves similar to {@link generateUngroupedOptionHelp()}. In
+     * contrast to the latter one, this method returns an array with 1
+     * dimension more, grouping options into categories. The $groups parameter
+     * defines the categories to generate. Each category may contain an
+     * arbitrary number of options, options might occur in different
      * categories.
      *
      * The returned array has the follorwing format:
@@ -148,15 +148,15 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      * ?>
      * </code>
      *
-     * The $long parameter, as in {@link generateUngroupedOptionHelp()} 
+     * The $long parameter, as in {@link generateUngroupedOptionHelp()}
      * determines if the options short or long help is to be used. The
      * $params array can in addition be used to determine if a parameter
-     * is displayed at all. If $optionsFilter is submitted and is not null, 
+     * is displayed at all. If $optionsFilter is submitted and is not null,
      * only options listed in it will be shown in the help at all.
-     * 
+     *
      * @param array(string=>array(string)) $groups
-     * @param bool $long 
-     * @param array(string) $params 
+     * @param bool $long
+     * @param array(string) $params
      * @return array(string=>array(array(string)))
      */
     public function generateGroupedOptionHelp( array $groups, $long = false, array $optionsFilter = null )
@@ -182,7 +182,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     /**
      * Generates help information as a multi-dimensonal array for the given $argumentDefinition.
      *
-     * This method generates a tabular help information for the given 
+     * This method generates a tabular help information for the given
      * $argumentDefinition in the following format:
      *
      * <code>
@@ -200,8 +200,8 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      * )
      * ?>
      * </code>
-     * 
-     * The $long parameter defines if the long of short help text should be 
+     *
+     * The $long parameter defines if the long of short help text should be
      * used.
      *
      * @param bool $long
@@ -226,15 +226,15 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
                 }
                 $argSynopsis = sprintf( $argSynopsis, $type, $arg->name );
                 $help[] = ( $long === true )
-                        ? array( 
+                        ? array(
                             $argSynopsis,
-                            $arg->longhelp . ( $arg->mandatory === false 
-                                               ? ' (optional' . ( $arg->default !== null 
-                                                                  ? ', default = ' . ( is_array( $arg->default ) 
-                                                                                       ? "'" . implode( "' '", $arg->default ) . "'" 
-                                                                                       : "'$arg->default'" 
+                            $arg->longhelp . ( $arg->mandatory === false
+                                               ? ' (optional' . ( $arg->default !== null
+                                                                  ? ', default = ' . ( is_array( $arg->default )
+                                                                                       ? "'" . implode( "' '", $arg->default ) . "'"
+                                                                                       : "'$arg->default'"
                                                                                      )
-                                                                  : '' 
+                                                                  : ''
                                                                 ) . ')'
                                                : ''
                                              )
@@ -246,17 +246,17 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     }
 
     /**
-     * Creates 1 text row for displaying options help. 
+     * Creates 1 text row for displaying options help.
      *
      * Returns a single array entry for the {@link getOptionHelpRow()} method.
      *
-     * @param bool $long 
+     * @param bool $long
      * @param ezcConsoleOption $param
      * @return string
      */
     private function getOptionHelpRow( $long, ezcConsoleOption $param )
     {
-        return array( 
+        return array(
             ( $param->short !== "" ? '-' . $param->short . ' / ' : "" ) . '--' . $param->long,
             $long == false ? $param->shorthelp : $param->longhelp,
         );
@@ -265,9 +265,9 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     /**
      * Generates a command line synopsis for the options and arguments.
      *
-     * This method generates a synopsis string that lists the options and 
+     * This method generates a synopsis string that lists the options and
      * parameters available, indicating their usage. If $optionsFilter is
-     * submitted, only the options named in this array (short or long variant) 
+     * submitted, only the options named in this array (short or long variant)
      * will be included in the synopsis.
      *
      * @param array(string) $optionsFilter
@@ -303,11 +303,11 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      * This method returns a part of the program synopsis, specifically for a
      * certain parameter. The method recursively adds depending parameters up
      * to the 2nd depth level to the synopsis. The second parameter is used
-     * to store the short names of all options that have already been used in 
-     * the synopsis (to avoid adding an option twice). The 3rd parameter 
-     * determines the actual deps in the option dependency recursion to 
+     * to store the short names of all options that have already been used in
+     * the synopsis (to avoid adding an option twice). The 3rd parameter
+     * determines the actual deps in the option dependency recursion to
      * terminate that after 2 recursions.
-     * 
+     *
      * @param ezcConsoleOption $option        The option to include.
      * @param array(string) $usedOptions Array of used option short names.
      * @param int $depth                      Current recursion depth.
@@ -319,10 +319,10 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
 
         // Break after a nesting level of 2
         if ( $depth++ > 2 || ( in_array( $option->short, $usedOptions['short'] ) && in_array( $option->long, $usedOptions['long'] ) ) ) return $synopsis;
-        
+
         $usedOptions['short'][] = $option->short;
         $usedOptions['long'][]  = $option->long;
-        
+
         $synopsis .= $option->short !== "" ? "-{$option->short}" : "--{$option->long}";
 
         if ( isset( $option->default ) )
@@ -346,17 +346,17 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
         foreach ( $option->getDependencies() as $rule )
         {
             $deeperSynopsis = $this->createOptionSynopsis( $rule->option, $usedOptions, $depth );
-            $synopsis .= ( iconv_strlen( trim( $deeperSynopsis ), 'UTF-8' ) > 0 
+            $synopsis .= ( iconv_strlen( trim( $deeperSynopsis ), 'UTF-8' ) > 0
                 ? ' ' . $deeperSynopsis
                 : ''
             );
         }
-        
+
         if ( $option->arguments === false )
         {
             $allowsArgs = false;
         }
-        
+
         // Make the whole thing optional?
         if ( $option->mandatory === false )
         {
@@ -367,8 +367,8 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     }
 
     /**
-     * Generate synopsis for arguments. 
-     * 
+     * Generate synopsis for arguments.
+     *
      * @return string The synopsis string.
      */
     private function createArgumentsSynopsis()

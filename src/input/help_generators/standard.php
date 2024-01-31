@@ -276,13 +276,12 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     public function generateSynopsis( array $optionFilter = null )
     {
         $usedOptions = array( 'short' => array(), 'long' => array() );
-        $allowsArgs = true;
         $synopsis = '$ ' . ( isset( $argv ) && sizeof( $argv ) > 0 ? $argv[0] : $_SERVER['argv'][0] ) . ' ';
         foreach ( $this->input->getOptions() as $option )
         {
             if ( $optionFilter === null || in_array( $option->short, $optionFilter ) ||  in_array( $option->long, $optionFilter ) )
             {
-                $synopsis .= $this->createOptionSynopsis( $option, $usedOptions, $allowsArgs );
+                $synopsis .= $this->createOptionSynopsis( $option, $usedOptions );
             }
         }
         if ( $this->input->argumentDefinition === null )

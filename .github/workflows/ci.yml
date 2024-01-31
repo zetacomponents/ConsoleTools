@@ -52,4 +52,4 @@ jobs:
           composer-options: --ignore-platform-reqs
 
       - name: Run unit tests
-        run: vendor/bin/phpunit
+        run: php vendor/bin/phpunit

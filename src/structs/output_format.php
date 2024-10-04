@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -52,7 +52,7 @@
  * - white
  * - default (representing the consoles default background color)
  *
- * The {@link ezcConsoleOutputFormat::$style} attribute takes an array of 
+ * The {@link ezcConsoleOutputFormat::$style} attribute takes an array of
  * (possibly) multiple attributes. Choose from the lists below:
  *
  * - default (resets all attributes to default)
@@ -97,7 +97,7 @@ class ezcConsoleOutputFormat
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array( 
+    protected $properties = array(
         'color'     => 'default',
         'style'     => array( 'default' ),
         'bgcolor'   => 'default',
@@ -107,23 +107,23 @@ class ezcConsoleOutputFormat
     /**
      * Create a new ezcConsoleOutputFormat object.
      * Creates a new object of this class.
-     * 
+     *
      * @param string $color             Name of a color value.
      * @param array(string) $style Names of style values.
      * @param string $bgcolor           Name of a bgcolor value.
      * @param string $target            Target output stream.
      */
-    public function __construct( $color = 'default', array $style = null, $bgcolor = 'default', $target = ezcConsoleOutput::TARGET_OUTPUT )
+    public function __construct( $color = 'default', ?array $style = null, $bgcolor = 'default', $target = ezcConsoleOutput::TARGET_OUTPUT )
     {
         $this->__set( 'color', $color );
         $this->__set( 'style', isset( $style ) ? $style : array( 'default' ) );
         $this->__set( 'bgcolor', $bgcolor );
         $this->__set( 'target', $target );
     }
-    
+
     /**
      * Overloaded __get() method to gain read-only access to some attributes.
-     * 
+     *
      * @param string $propertyName Name of the property to read.
      * @return mixed Desired value if exists, otherwise null.
      * @ignore
@@ -151,7 +151,7 @@ class ezcConsoleOutputFormat
      *         If the setting you try to access does not exists
      * @throws ezcBaseValueException
      *         If trying to set an invalid value for a setting.
-     * 
+     *
      * @param string $propertyName Name of the attrinbute to access.
      * @param string $val The value to set.
      * @ignore
@@ -184,10 +184,10 @@ class ezcConsoleOutputFormat
         }
         $this->properties[$propertyName] = $val;
     }
- 
+
     /**
      * Property isset access.
-     * 
+     *
      * @param string $propertyName Name of the property.
      * @return bool True is the property is set, otherwise false.
      * @ignore
@@ -196,7 +196,7 @@ class ezcConsoleOutputFormat
     {
         return isset( $this->properties[$propertyName] );
     }
-    
+
 }
 
 ?>

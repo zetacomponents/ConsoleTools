@@ -9,9 +9,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -33,7 +33,7 @@
  *
  * The behaviour of this dialog is defined by an instance of
  * {@link ezcConsoleQuestionDialogOptions}.
- * 
+ *
  * @package ConsoleTools
  * @version //autogen//
  *
@@ -46,15 +46,15 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
 {
 
     /**
-     * Dialog result 
-     * 
+     * Dialog result
+     *
      * @var mixed
      */
     protected $result;
 
     /**
-     * Properties 
-     * 
+     * Properties
+     *
      * @var array
      */
     protected $properties = array(
@@ -67,12 +67,12 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
      * Creates a new menu dialog to be displayed to the user. All behaviour is
      * defined through the $options parameter. The $output parameter is used to
      * display the dialog in the {@link display()} method.
-     * 
+     *
      * @param ezcConsoleOutput $output                 Output object.
      * @param ezcConsoleQuestionDialogOptions $options Options.
      * @return void
      */
-    public function __construct( ezcConsoleOutput $output, ezcConsoleQuestionDialogOptions $options = null )
+    public function __construct( ezcConsoleOutput $output, ?ezcConsoleQuestionDialogOptions $options = null )
     {
         $this->output  = $output;
         $this->options = $options === null ? new ezcConsoleQuestionDialogOptions() : $options;
@@ -82,7 +82,7 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
      * Returns if the dialog retrieved a valid result.
      * If a valid result has already been received, this method returns true,
      * otherwise false.
-     * 
+     *
      * @return bool If a valid result was retrieved.
      */
     public function hasValidResult()
@@ -94,11 +94,11 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
      * Returns the result retrieved.
      * If no valid result was retreived, yet, this method should throw an
      * ezcConsoleNoValidDialogResultException.
-     * 
+     *
      * If no valid result was retreived, yet, this method throws an
      * ezcConsoleNoValidDialogResultException. Use {@link hasValidResult()} to
      * avoid this.
-     * 
+     *
      * @return mixed The retreived result.
      *
      * @throws ezcDialogNoValidResultException
@@ -121,7 +121,7 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
      * the a valid result is retrieved, it can be obtained using {@link
      * getResult()}. The method {@link hasValidResult()} can be used to check
      * if a valid result is available.
-     * 
+     *
      * @return void
      * @throws ezcConsoleDialogAbortException
      *         if the user closes STDIN using <CTRL>-D.
@@ -146,7 +146,7 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
      * Resets a possibly received result and all changes made to the dialog
      * during {@link display()}. After that, the dialog can be re-used. All
      * option values are kept.
-     * 
+     *
      * @return void
      */
     public function reset()
@@ -160,13 +160,13 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
      * "n" for "no" from the user. The answer is converted to lower-case.
      *
      * <code>
-     * // Would you like to proceed? (y/n) 
+     * // Would you like to proceed? (y/n)
      * $dialog = ezcConsoleDialog( $out, "Would you like to proceed?" );
      *
-     * // Would you like to proceed? (y/n) [n] 
+     * // Would you like to proceed? (y/n) [n]
      * $dialog = ezcConsoleDialog( $out, "Would you like to proceed?", "n" );
      * </code>
-     * 
+     *
      * @param ezcConsoleOutput $out  Output object.
      * @param string $questionString Question string.
      * @param string $default        "y" or "n", if default value is desired.
@@ -193,9 +193,9 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
     /**
      * Property read access.
      *
-     * @throws ezcBasePropertyNotFoundException 
+     * @throws ezcBasePropertyNotFoundException
      *         If the the desired property is not found.
-     * 
+     *
      * @param string $propertyName Name of the property.
      * @return mixed Value of the property or null.
      * @ignore
@@ -211,13 +211,13 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
 
     /**
      * Property write access.
-     * 
+     *
      * @param string $propertyName Name of the property.
      * @param mixed $propertyValue The value for the property.
      *
      * @throws ezcBasePropertyPermissionException
      *         If the property you try to access is read-only.
-     * @throws ezcBasePropertyNotFoundException 
+     * @throws ezcBasePropertyNotFoundException
      *         If the the desired property is not found.
      * @ignore
      */
@@ -253,7 +253,7 @@ class ezcConsoleQuestionDialog implements ezcConsoleDialog
 
     /**
      * Property isset access.
-     * 
+     *
      * @param string $propertyName Name of the property to check.
      * @return bool If the property exists or not.
      * @ignore
